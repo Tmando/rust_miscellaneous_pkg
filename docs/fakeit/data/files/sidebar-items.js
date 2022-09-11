@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["EXTENSION",""],["MIME_TYPE",""]]});

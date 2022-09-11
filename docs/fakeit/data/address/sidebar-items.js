@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["CITY",""],["COUNTRY",""],["COUNTRY_ABR",""],["NUMBER",""],["STATE",""],["STATE_ABR",""],["STREET_NAME",""],["STREET_PREFIX",""],["STREET_SUFFIX",""],["ZIP",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["blosum62","Return the BLOSUM62 substitution matrix score of [a, b]"]]});
