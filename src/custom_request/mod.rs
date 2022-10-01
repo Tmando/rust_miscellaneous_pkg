@@ -3,7 +3,8 @@ pub mod custom_request {
     use reqwest::Client;
     use reqwest::Method;
     use std::collections::HashMap;
-    #[derive(Debug)]
+    use serde::{Serialize, Deserialize};
+    #[derive(Serialize, Deserialize, Debug)]
     pub struct CustomResponse {
         pub headers: HashMap<String, String>,
         pub status_code: String,
