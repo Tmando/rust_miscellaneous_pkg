@@ -12,6 +12,7 @@ pub mod image_resizer {
         nheight: u32,
         filter: image::imageops::FilterType,
         path_output_folder: String,
+        only_shrink:bool
     ) -> bool {
         let paths = std::fs::read_dir(path_input_folder);
         let filter = filter;
@@ -35,7 +36,7 @@ pub mod image_resizer {
             let new_file_name = format!("{}{}{}", stem_str, "_resize.",extension_str);
             let output_path = std::path::Path::new(&path_output_folder).join(new_file_name);
             let output_path_str = output_path.to_str().unwrap();
-            resize(path_str.to_str().unwrap().to_string(),nwidth,nheight,filter,output_path_str.to_string());
+            resize(path_str.to_str().unwrap().to_string(),nwidth,nheight,filter,output_path_str.to_string(),only_shrink);
             
         }
         return true;
@@ -49,12 +50,18 @@ pub mod image_resizer {
         nheight: u32,
         filter: image::imageops::FilterType,
         path_new_image: impl AsRef<Path>,
+        only_shrink:bool
     ) -> bool {
         let decoded_image = load_image(path);
         let decoded_image = match decoded_image {
             Ok(res) => res,
             Err(_err) => return false,
         };
+
+        if only_shrink && ((nwidth > decoded_image.width()) ||  (nwidth > decoded_image.width())){
+            return false
+        }
+
         let resized_image = decoded_image.resize(nwidth, nheight, filter);
         let res = resized_image.save(path_new_image);
         match res {
@@ -101,7 +108,8 @@ mod test {
                 400,
                 400,
                 image::imageops::FilterType::Nearest,
-                "tests/test_nearest_image/nearest.jpg".to_string()
+                "tests/test_nearest_image/nearest.jpg".to_string(),
+                true
             ),
             true
         );
@@ -114,7 +122,8 @@ mod test {
                 400,
                 400,
                 image::imageops::FilterType::Triangle,
-                "tests/test_triangle_image/triangle.jpg".to_string()
+                "tests/test_triangle_image/triangle.jpg".to_string(),
+                true
             ),
             true
         );
@@ -128,7 +137,8 @@ mod test {
                 400,
                 400,
                 image::imageops::FilterType::CatmullRom,
-                "tests/test_catmull_rom/catmull_rom.jpg".to_string()
+                "tests/test_catmull_rom/catmull_rom.jpg".to_string(),
+                true
             ),
             true
         );
@@ -141,7 +151,8 @@ mod test {
                 400,
                 400,
                 image::imageops::FilterType::Gaussian,
-                "tests/test_gaussian/gaussian.jpg".to_string()
+                "tests/test_gaussian/gaussian.jpg".to_string(),
+                true
             ),
             true
         )
@@ -154,7 +165,8 @@ mod test {
                 400,
                 400,
                 image::imageops::FilterType::Lanczos3,
-                "tests/test_lanczos3/lanczos3.jpg".to_string()
+                "tests/test_lanczos3/lanczos3.jpg".to_string(),
+                true
             ),
             true
         );
@@ -166,7 +178,8 @@ mod test {
             400,
             400,
             image::imageops::FilterType::Lanczos3,
-            "tests/test_batch_lanczos3/resize".to_string()
+            "tests/test_batch_lanczos3/resize".to_string(),
+            true
         ),true);
     }
     #[test]
@@ -176,7 +189,8 @@ mod test {
             400,
             400,
             image::imageops::FilterType::Nearest,
-            "tests/test_batch_nearest/resize".to_string()
+            "tests/test_batch_nearest/resize".to_string(),
+            true
         ),true);
     }
     #[test]
@@ -186,7 +200,8 @@ mod test {
             400,
             400,
             image::imageops::FilterType::Triangle,
-            "tests/test_batch_triangle_image/resize".to_string()
+            "tests/test_batch_triangle_image/resize".to_string(),
+            true
         ),true);
     }
     #[test]
@@ -196,7 +211,8 @@ mod test {
             800,
             600,
             image::imageops::FilterType::Triangle,
-            "tests/test_small_image/resize".to_string()
+            "tests/test_small_image/resize".to_string(),
+            true
         ),true);
     }
 }
