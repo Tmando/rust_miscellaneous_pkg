@@ -1,3 +1,4 @@
+//! This module allows to write a json object to an excel sheet and read out the content of excel sheet to json a json structure
 pub mod excel_operations {
     use rayon::prelude::*;
     use serde_json::json;
@@ -7,6 +8,7 @@ pub mod excel_operations {
     use std::sync::Mutex;
     use umya_spreadsheet::*;
 
+    /// Write an json input to an Excel sheet
     pub fn write_sheet_by_name(
         file_path: impl AsRef<Path>,
         sheet_name: String,
@@ -35,7 +37,8 @@ pub mod excel_operations {
             _ => return true,
         }
     }
-    
+
+    /// create a string vec for the header values
     fn get_header_values_for_writing_excel_sheet(json_value: &Value) -> Vec<String> {
         let mut res_data: Vec<String> = Vec::new();
         if json_value.is_object() {
@@ -54,6 +57,7 @@ pub mod excel_operations {
         }
         return res_data;
     }
+    /// This function takes a vector with the Header Values and writes the first line in the excel sheet
     fn write_header_line(header_vec: &Vec<String>, mut worksheet: Worksheet) -> Worksheet {
         for i in 0..header_vec.len() {
             worksheet
@@ -63,6 +67,7 @@ pub mod excel_operations {
         return worksheet;
     }
 
+    /// This function takes json object or json array and writes the content to an excel sheet 
     fn write_json_values_to_excel_file(
         header_vec: Vec<String>,
         data_values: &Value,
@@ -87,6 +92,8 @@ pub mod excel_operations {
         }
         return worksheet;
     }
+
+    /// This function writes one single data row to an excel sheet
     fn write_single_data_row_to_excel(
         header_vec: Vec<String>,
         data_values: &Value,
@@ -142,7 +149,7 @@ pub mod excel_operations {
         }
         return worksheet;
     }
-
+    /// Add a new header key value if the value not is in the header vector
     fn fill_up_header_json_object(
         json_data: serde_json::map::Keys,
         mut input_vec: Vec<String>,
