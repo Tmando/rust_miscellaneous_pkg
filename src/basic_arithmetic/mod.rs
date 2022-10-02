@@ -1,23 +1,29 @@
+//! Collection of basic arithmetic functions
 pub mod basic_arithmetic{
+    // Add two numbers
     pub fn add_num(a:f64,b:f64)->f64{
         return a+b;
     }
 
+    // Subtract two numbers
     pub fn sub_num(a:f64,b:f64)->f64{
         return a-b;
     }
 
+    // Multiply two numbers
     pub fn mul_num(a:f64,b:f64)->f64{
         return a*b;
     }
 
+    // Divide two numbers
     pub fn div_num(a:f64,b:f64)->f64{
         if b == 0.0 {
             panic!("b cannot be zero");
         }
         return a/b;
     }
-
+    
+    // Calculate the modulo of two numbers
     pub fn mod_num(a:f64,b:f64)->f64{
         return a%b;
     }
