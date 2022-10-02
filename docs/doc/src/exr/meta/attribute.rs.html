@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/thomas/.cargo/registry/src/github.com-1ecc6299db9ec823/exr-1.5.0/src/meta/attribute.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>attribute.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/thomas/.cargo/registry/src/github.com-1ecc6299db9ec823/exr-1.5.1/src/meta/attribute.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>attribute.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../exr/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
@@ -2213,6 +2213,22 @@
 <span id="2208">2208</span>
 <span id="2209">2209</span>
 <span id="2210">2210</span>
+<span id="2211">2211</span>
+<span id="2212">2212</span>
+<span id="2213">2213</span>
+<span id="2214">2214</span>
+<span id="2215">2215</span>
+<span id="2216">2216</span>
+<span id="2217">2217</span>
+<span id="2218">2218</span>
+<span id="2219">2219</span>
+<span id="2220">2220</span>
+<span id="2221">2221</span>
+<span id="2222">2222</span>
+<span id="2223">2223</span>
+<span id="2224">2224</span>
+<span id="2225">2225</span>
+<span id="2226">2226</span>
 </pre><pre class="rust"><code>
 <span class="doccomment">//! Contains all meta data attributes.</span>
 <span class="doccomment">//! Each layer can have any number of [`Attribute`]s, including custom attributes.</span>
@@ -3711,18 +3727,34 @@ impl&lt;&#39;s&gt; TryFrom&lt;&amp;&#39;s str&gt; for Text {
 
     <span class="doccomment">/// Read the value without validating.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">read</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">components_per_pixel</span> <span class="op">=</span> <span class="number">4</span>;
         <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">u32::read</span>(<span class="ident">read</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">u32::read</span>(<span class="ident">read</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
 
-        <span class="kw">let</span> <span class="ident">pixel_data</span> <span class="op">=</span> <span class="ident">i8::read_vec</span>(<span class="ident">read</span>, <span class="ident">width</span> <span class="op">*</span> <span class="ident">height</span> <span class="op">*</span> <span class="ident">components_per_pixel</span>, <span class="number">1024</span><span class="kw-2">*</span><span class="number">1024</span><span class="kw-2">*</span><span class="number">4</span>, <span class="prelude-val">None</span>, <span class="string">&quot;preview attribute pixel count&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pixel_count</span>) <span class="op">=</span> <span class="ident">width</span>.<span class="ident">checked_mul</span>(<span class="ident">height</span>) {
+            <span class="comment">// Multiply by the number of bytes per pixel.</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">byte_count</span>) <span class="op">=</span> <span class="ident">pixel_count</span>.<span class="ident">checked_mul</span>(<span class="number">4</span>) {
+                <span class="kw">let</span> <span class="ident">pixel_data</span> <span class="op">=</span> <span class="ident">i8::read_vec</span>(
+                    <span class="ident">read</span>,
+                    <span class="ident">byte_count</span>,
+                    <span class="number">1024</span> <span class="op">*</span> <span class="number">1024</span> <span class="op">*</span> <span class="number">4</span>,
+                    <span class="prelude-val">None</span>,
+                    <span class="string">&quot;preview attribute pixel count&quot;</span>,
+                )<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">preview</span> <span class="op">=</span> <span class="ident">Preview</span> {
-            <span class="ident">size</span>: <span class="ident">Vec2</span>(<span class="ident">width</span>, <span class="ident">height</span>),
-            <span class="ident">pixel_data</span>,
-        };
+                <span class="kw">let</span> <span class="ident">preview</span> <span class="op">=</span> <span class="ident">Preview</span> {
+                    <span class="ident">size</span>: <span class="ident">Vec2</span>(<span class="ident">width</span>, <span class="ident">height</span>),
+                    <span class="ident">pixel_data</span>,
+                };
 
-        <span class="prelude-val">Ok</span>(<span class="ident">preview</span>)
+                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">preview</span>);
+            }
+        }
+
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::invalid</span>(
+                <span class="macro">format!</span>(<span class="string">&quot;Overflow while calculating preview image Attribute size \
+                (width: {}, height: {}).&quot;</span>,
+                <span class="ident">width</span>,
+                <span class="ident">height</span>)));
     }
 
     <span class="doccomment">/// Validate this instance.</span>
@@ -4422,6 +4454,7 @@ impl&lt;&#39;s&gt; TryFrom&lt;&amp;&#39;s str&gt; for Text {
         }
     }
 
-}</code></pre></div>
+}
+</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="exr" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>
