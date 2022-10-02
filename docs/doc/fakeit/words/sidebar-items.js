@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["paragraph",""],["paragraph_generator",""],["question",""],["quote",""],["sentence",""],["word",""]],"struct":[["ParagraphOpts",""]]});

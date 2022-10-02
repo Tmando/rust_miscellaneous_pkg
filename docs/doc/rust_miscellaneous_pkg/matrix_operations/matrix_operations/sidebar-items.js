@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["abs_matrix",""],["add_matrix",""],["dot_product_matrix",""],["max_matrix",""],["min_matrix",""],["mul_matrix",""],["sub_matrix",""],["transpose_matrix",""]]});

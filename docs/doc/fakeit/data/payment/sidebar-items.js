@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["CARD_TYPE",""],["NUMBER",""]]});

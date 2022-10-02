@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Arg","Metadata function argument."],["Func","Metadata function."],["Impl","Metadata Impl."],["Metadata","Module metadata."]]});

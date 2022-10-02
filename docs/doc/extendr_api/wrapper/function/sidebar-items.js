@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Function","Wrapper for creating functions (CLOSSXP)."]]});

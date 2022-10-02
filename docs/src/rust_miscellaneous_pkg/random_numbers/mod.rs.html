@@ -29,12 +29,16 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">random_numbers</span> {
     <span class="kw">use</span> <span class="ident">rand::Rng</span>;
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_random_number_range</span>(<span class="ident">min_num</span>: <span class="ident">f64</span>, <span class="ident">max_num</span>: <span class="ident">f64</span>) -&gt; <span class="ident">f64</span> {
         <span class="kw">return</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen_range</span>(<span class="ident">min_num</span>..<span class="ident">max_num</span>);
     }
 }
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_rand_num_between_1_10</span>() {

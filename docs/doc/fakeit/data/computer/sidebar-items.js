@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["LINUX_PROCESSOR",""],["MAC_PROCESSOR",""],["WINDOWS_PLATFORM",""]]});

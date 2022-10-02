@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["office",""],["spreadsheet",""]],"struct":[["Fill",""],["ImageData",""],["Path",""],["Shadow",""],["Shape",""],["Stroke",""],["TextBox",""]]});

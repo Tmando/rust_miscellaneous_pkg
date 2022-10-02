@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["BROWSER",""],["DOMAIN_SUFFIX",""],["HTTP_METHOD",""]]});

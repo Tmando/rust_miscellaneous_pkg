@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["XlsxError",""]],"fn":[["write","write spreadsheet file."],["write_writer","write spreadsheet file to arbitrary writer."]]});

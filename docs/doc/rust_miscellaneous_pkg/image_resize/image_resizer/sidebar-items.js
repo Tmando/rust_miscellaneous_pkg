@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["resize","This function resize a single image with different algorithms returns [bool]"],["resize_batch_from_folder","This function allows you to resize images in a folder."]]});

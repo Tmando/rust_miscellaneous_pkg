@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Language","Wrapper for creating language objects."]]});

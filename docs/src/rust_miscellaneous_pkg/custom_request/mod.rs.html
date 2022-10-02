@@ -301,12 +301,14 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
+<span id="299">299</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">custom_request</span> {
     <span class="kw">use</span> <span class="ident">bytes::Bytes</span>;
     <span class="kw">use</span> <span class="ident">reqwest::Client</span>;
     <span class="kw">use</span> <span class="ident">reqwest::Method</span>;
     <span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+    <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>};
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CustomResponse</span> {
         <span class="kw">pub</span> <span class="ident">headers</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span>,
         <span class="kw">pub</span> <span class="ident">status_code</span>: <span class="ident">String</span>,

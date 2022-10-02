@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["pam200","Return the PAM200 substitution matrix score of [a, b]"]]});

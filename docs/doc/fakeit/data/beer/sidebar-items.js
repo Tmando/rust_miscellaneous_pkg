@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["HOP",""],["MALT",""],["NAME",""],["STYLE",""],["YEAST",""]]});
