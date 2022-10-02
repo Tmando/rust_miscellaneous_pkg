@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Structs and trait to read and write files in FASTA format."><meta name="keywords" content="rust, rustlang, rust-lang, fasta"><title>bio::io::fasta - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" href="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../bio/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../bio/index.html"><div class="logo-container">
+                    <img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module fasta</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li></ul></div></section><div id="sidebar-vars" data-name="fasta" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../bio/index.html">
+                        <img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../../index.html">bio</a>::<wbr><a href="../index.html">io</a>::<wbr><a class="mod" href="#">fasta</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/bio/io/fasta.rs.html#6-1791">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Structs and trait to read and write files in FASTA format.</p>
+<h2 id="example"><a href="#example">Example</a></h2><h3 id="read"><a href="#read">Read</a></h3>
+<p>In this example, we parse a fasta file from stdin and compute some statistics</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">bio::io::fasta</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">fasta::Reader::new</span>(<span class="ident">io::stdin</span>());
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nb_reads</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nb_bases</span> <span class="op">=</span> <span class="number">0</span>;
+
+<span class="kw">for</span> <span class="ident">result</span> <span class="kw">in</span> <span class="ident">reader</span>.<span class="ident">records</span>() {
+    <span class="kw">let</span> <span class="ident">record</span> <span class="op">=</span> <span class="ident">result</span>.<span class="ident">expect</span>(<span class="string">&quot;Error during fasta record parsing&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">record</span>.<span class="ident">id</span>());
+
+    <span class="ident">nb_reads</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="ident">nb_bases</span> <span class="op">+</span><span class="op">=</span> <span class="ident">record</span>.<span class="ident">seq</span>().<span class="ident">len</span>();
+}
+
+<span class="macro">println!</span>(<span class="string">&quot;Number of reads: {}&quot;</span>, <span class="ident">nb_reads</span>);
+<span class="macro">println!</span>(<span class="string">&quot;Number of bases: {}&quot;</span>, <span class="ident">nb_bases</span>);</code></pre></div>
+<p>We can also use a <code>while</code> loop to iterate over records.
+This is slightly faster than the <code>for</code> loop.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">bio::io::fasta</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">records</span> <span class="op">=</span> <span class="ident">fasta::Reader::new</span>(<span class="ident">io::stdin</span>()).<span class="ident">records</span>();
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nb_reads</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nb_bases</span> <span class="op">=</span> <span class="number">0</span>;
+
+<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(<span class="ident">record</span>)) <span class="op">=</span> <span class="ident">records</span>.<span class="ident">next</span>() {
+    <span class="ident">nb_reads</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="ident">nb_bases</span> <span class="op">+</span><span class="op">=</span> <span class="ident">record</span>.<span class="ident">seq</span>().<span class="ident">len</span>();
+}
+
+<span class="macro">println!</span>(<span class="string">&quot;Number of reads: {}&quot;</span>, <span class="ident">nb_reads</span>);
+<span class="macro">println!</span>(<span class="string">&quot;Number of bases: {}&quot;</span>, <span class="ident">nb_bases</span>);</code></pre></div>
+<h3 id="write"><a href="#write">Write</a></h3>
+<p>In this example we generate 10 random sequences with length 100 and write them to stdout.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">use</span> <span class="ident">bio::io::fasta</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">seed</span> <span class="op">=</span> <span class="number">42</span>;
+
+<span class="kw">let</span> <span class="ident">nucleotides</span> <span class="op">=</span> [<span class="string">b&#39;A&#39;</span>, <span class="string">b&#39;C&#39;</span>, <span class="string">b&#39;G&#39;</span>, <span class="string">b&#39;T&#39;</span>];
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">fasta::Writer::new</span>(<span class="ident">io::stdout</span>());
+
+<span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
+    <span class="kw">let</span> <span class="ident">seq</span> <span class="op">=</span> (<span class="number">0</span>..<span class="number">100</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+        <span class="ident">seed</span> <span class="op">=</span> ((<span class="ident">seed</span> <span class="op">^</span> <span class="ident">seed</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>) <span class="op">^</span> <span class="ident">seed</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">7</span>) <span class="op">^</span> <span class="ident">seed</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">17</span>; <span class="comment">// don&#39;t use this random generator</span>
+        <span class="ident">nucleotides</span>[<span class="ident">seed</span> <span class="op">%</span> <span class="number">4</span>]
+    }).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+
+   <span class="ident">writer</span>.<span class="ident">write</span>(<span class="string">&quot;random&quot;</span>, <span class="prelude-val">None</span>, <span class="ident">seq</span>.<span class="ident">as_slice</span>()).<span class="ident">expect</span>(<span class="string">&quot;Error writing record.&quot;</span>);
+}</code></pre></div>
+<h3 id="read-and-write"><a href="#read-and-write">Read and Write</a></h3>
+<p>In this example we filter reads from stdin on sequence length and write them to stdout</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">bio::io::fasta</span>;
+<span class="kw">use</span> <span class="ident">bio::io::fasta::FastaRead</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">fasta::Reader::new</span>(<span class="ident">io::stdin</span>());
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span> <span class="ident">fasta::Writer::new</span>(<span class="ident">io::stdout</span>());
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">record</span> <span class="op">=</span> <span class="ident">fasta::Record::new</span>();
+
+<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(()) <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="ident">record</span>) {
+    <span class="kw">if</span> <span class="ident">record</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">break</span>;
+    }
+
+    <span class="kw">if</span> <span class="ident">record</span>.<span class="ident">seq</span>().<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">100</span> {
+        <span class="ident">writer</span>
+            .<span class="ident">write_record</span>(<span class="kw-2">&amp;</span><span class="ident">record</span>)
+            .<span class="ident">ok</span>()
+            .<span class="ident">expect</span>(<span class="string">&quot;Error writing record.&quot;</span>);
+    }
+}</code></pre></div>
+<h3 id="index"><a href="#index">Index</a></h3>
+<p>Random access to FASTA files is facilitated by <a href="struct.Index.html" title="Index"><code>Index</code></a> and <a href="struct.IndexedReader.html" title="IndexedReader"><code>IndexedReader</code></a>. The FASTA files
+must already be indexed with <a href="https://www.htslib.org/doc/faidx.html"><code>samtools faidx</code></a>.</p>
+<p>In this example, we read in the first 10 bases of the sequence named “chr1”.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">bio::io::fasta::IndexedReader</span>;
+<span class="comment">// create dummy files</span>
+<span class="kw">const</span> <span class="ident">FASTA_FILE</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="string">b&quot;&gt;chr1\nGTAGGCTGAAAA\nCCCC&quot;</span>;
+<span class="kw">const</span> <span class="ident">FAI_FILE</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="string">b&quot;chr1\t16\t6\t12\t13&quot;</span>;
+
+<span class="kw">let</span> <span class="ident">seq_name</span> <span class="op">=</span> <span class="string">&quot;chr1&quot;</span>;
+<span class="kw">let</span> <span class="ident">start</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0</span>; <span class="comment">// start is 0-based, inclusive</span>
+<span class="kw">let</span> <span class="ident">stop</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">10</span>; <span class="comment">// stop is 0-based, exclusive</span>
+                    <span class="comment">// load the index</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">faidx</span> <span class="op">=</span> <span class="ident">IndexedReader::new</span>(<span class="ident">std::io::Cursor::new</span>(<span class="ident">FASTA_FILE</span>), <span class="ident">FAI_FILE</span>).<span class="ident">unwrap</span>();
+<span class="comment">// move the pointer in the index to the desired sequence and interval</span>
+<span class="ident">faidx</span>
+    .<span class="ident">fetch</span>(<span class="ident">seq_name</span>, <span class="ident">start</span>, <span class="ident">stop</span>)
+    .<span class="ident">expect</span>(<span class="string">&quot;Couldn&#39;t fetch interval&quot;</span>);
+<span class="comment">// read the subsequence defined by the interval into a vector</span>
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">seq</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+<span class="ident">faidx</span>.<span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="ident">seq</span>).<span class="ident">expect</span>(<span class="string">&quot;Couldn&#39;t read the interval&quot;</span>);
+<span class="macro">assert_eq!</span>(<span class="ident">seq</span>, <span class="string">b&quot;GTAGGCTGAA&quot;</span>);</code></pre></div>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Index.html" title="bio::io::fasta::Index struct">Index</a></div><div class="item-right docblock-short"><p>A FASTA index as created by SAMtools (.fai).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.IndexedReader.html" title="bio::io::fasta::IndexedReader struct">IndexedReader</a></div><div class="item-right docblock-short"><p>A FASTA reader with an index as created by SAMtools (.fai).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.IndexedReaderIterator.html" title="bio::io::fasta::IndexedReaderIterator struct">IndexedReaderIterator</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Reader.html" title="bio::io::fasta::Reader struct">Reader</a></div><div class="item-right docblock-short"><p>A FASTA reader.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Record.html" title="bio::io::fasta::Record struct">Record</a></div><div class="item-right docblock-short"><p>A FASTA record.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Records.html" title="bio::io::fasta::Records struct">Records</a></div><div class="item-right docblock-short"><p>An iterator over the records of a Fasta file.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Sequence.html" title="bio::io::fasta::Sequence struct">Sequence</a></div><div class="item-right docblock-short"><p>A sequence record returned by the FASTA index.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Writer.html" title="bio::io::fasta::Writer struct">Writer</a></div><div class="item-right docblock-short"><p>A Fasta writer.</p>
+</div></div></div><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.FastaRead.html" title="bio::io::fasta::FastaRead trait">FastaRead</a></div><div class="item-right docblock-short"><p>Trait for FASTA readers.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="bio" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
+</body></html>

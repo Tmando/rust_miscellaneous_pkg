@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["adjustment_insert_formula_coordinate",""],["adjustment_remove_formula_coordinate",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["LONG",""],["SHORT",""]]});

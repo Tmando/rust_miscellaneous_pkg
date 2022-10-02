@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["pam40","Return the PAM40 substitution matrix score of [a, b]"]]});

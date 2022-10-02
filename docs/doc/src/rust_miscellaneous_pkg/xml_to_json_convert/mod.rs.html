@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/xml_to_json_convert/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rust_miscellaneous_pkg/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../rust_miscellaneous_pkg/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rust_miscellaneous_pkg/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xml_to_json_convert</span> {
+    <span class="kw">use</span> <span class="ident">quickxml_to_serde</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">serde_json::Value</span>;
+    <span class="doccomment">/// This function converts an xml string to a json Value</span>
+    <span class="doccomment">///</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xml_to_json</span>(<span class="ident">xml_input</span>: <span class="ident">String</span>) -&gt; <span class="ident">Value</span> {
+        <span class="kw">let</span> <span class="ident">json_out</span> <span class="op">=</span>
+            <span class="ident">quickxml_to_serde::xml_string_to_json</span>(<span class="ident">xml_input</span>, <span class="kw-2">&amp;</span><span class="ident">Config::new_with_defaults</span>());
+        <span class="kw">match</span> <span class="ident">json_out</span> {
+            <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; <span class="kw">return</span> <span class="ident">res</span>,
+            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="ident">std::panic::panic_any</span>(<span class="ident">err</span>),
+        }
+    }
+}
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">test</span> {
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_convert_xml_to_json_one</span>() {
+        <span class="kw">let</span> <span class="ident">xml_input</span> <span class="op">=</span> <span class="string">r#&quot;&lt;dataset&gt;
+        &lt;record&gt;
+        &lt;id&gt;1&lt;/id&gt;
+        &lt;first_name&gt;Nerita&lt;/first_name&gt;
+        &lt;last_name&gt;Stanney&lt;/last_name&gt;
+        &lt;email&gt;nstanney0@domainmarket.com&lt;/email&gt;
+        &lt;gender&gt;Female&lt;/gender&gt;
+        &lt;ip_address&gt;223.10.217.33&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;2&lt;/id&gt;
+        &lt;first_name&gt;Domini&lt;/first_name&gt;
+        &lt;last_name&gt;Bateman&lt;/last_name&gt;
+        &lt;email&gt;dbateman1@chronoengine.com&lt;/email&gt;
+        &lt;gender&gt;Female&lt;/gender&gt;
+        &lt;ip_address&gt;21.158.87.126&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;3&lt;/id&gt;
+        &lt;first_name&gt;Kariotta&lt;/first_name&gt;
+        &lt;last_name&gt;Teresa&lt;/last_name&gt;
+        &lt;email&gt;kteresa2@joomla.org&lt;/email&gt;
+        &lt;gender&gt;Female&lt;/gender&gt;
+        &lt;ip_address&gt;26.86.41.10&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;4&lt;/id&gt;
+        &lt;first_name&gt;Cosetta&lt;/first_name&gt;
+        &lt;last_name&gt;Fernandes&lt;/last_name&gt;
+        &lt;email&gt;cfernandes3@samsung.com&lt;/email&gt;
+        &lt;gender&gt;Female&lt;/gender&gt;
+        &lt;ip_address&gt;142.79.228.8&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;5&lt;/id&gt;
+        &lt;first_name&gt;Haze&lt;/first_name&gt;
+        &lt;last_name&gt;Heindrich&lt;/last_name&gt;
+        &lt;email&gt;hheindrich4@psu.edu&lt;/email&gt;
+        &lt;gender&gt;Male&lt;/gender&gt;
+        &lt;ip_address&gt;249.87.69.82&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;6&lt;/id&gt;
+        &lt;first_name&gt;Abey&lt;/first_name&gt;
+        &lt;last_name&gt;Atwell&lt;/last_name&gt;
+        &lt;email&gt;aatwell5@disqus.com&lt;/email&gt;
+        &lt;gender&gt;Male&lt;/gender&gt;
+        &lt;ip_address&gt;194.4.244.83&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;7&lt;/id&gt;
+        &lt;first_name&gt;Greggory&lt;/first_name&gt;
+        &lt;last_name&gt;Teresse&lt;/last_name&gt;
+        &lt;email&gt;gteresse6@sourceforge.net&lt;/email&gt;
+        &lt;gender&gt;Bigender&lt;/gender&gt;
+        &lt;ip_address&gt;219.161.232.148&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;8&lt;/id&gt;
+        &lt;first_name&gt;Brok&lt;/first_name&gt;
+        &lt;last_name&gt;Plitz&lt;/last_name&gt;
+        &lt;email&gt;bplitz7@house.gov&lt;/email&gt;
+        &lt;gender&gt;Male&lt;/gender&gt;
+        &lt;ip_address&gt;189.72.4.218&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;9&lt;/id&gt;
+        &lt;first_name&gt;Maggie&lt;/first_name&gt;
+        &lt;last_name&gt;Lissandri&lt;/last_name&gt;
+        &lt;email&gt;mlissandri8@ycombinator.com&lt;/email&gt;
+        &lt;gender&gt;Female&lt;/gender&gt;
+        &lt;ip_address&gt;204.69.47.52&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;record&gt;
+        &lt;id&gt;10&lt;/id&gt;
+        &lt;first_name&gt;Garrott&lt;/first_name&gt;
+        &lt;last_name&gt;Huett&lt;/last_name&gt;
+        &lt;email&gt;ghuett9@51.la&lt;/email&gt;
+        &lt;gender&gt;Male&lt;/gender&gt;
+        &lt;ip_address&gt;117.118.239.60&lt;/ip_address&gt;
+        &lt;/record&gt;
+        &lt;/dataset&gt;&quot;#</span>;
+        <span class="kw">let</span> <span class="ident">json_out</span> <span class="op">=</span> <span class="ident"><span class="kw">super</span>::xml_to_json_convert::xml_to_json</span>(<span class="ident">String::from</span>(<span class="ident">xml_input</span>)).<span class="ident">to_string</span>();
+        <span class="macro">assert_eq!</span>(<span class="ident">json_out</span>,
+            <span class="string">&quot;{\&quot;dataset\&quot;:{\&quot;record\&quot;:[{\&quot;email\&quot;:\&quot;nstanney0@domainmarket.com\&quot;,\&quot;first_name\&quot;:\&quot;Nerita\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:1,\&quot;ip_address\&quot;:\&quot;223.10.217.33\&quot;,\&quot;last_name\&quot;:\&quot;Stanney\&quot;},{\&quot;email\&quot;:\&quot;dbateman1@chronoengine.com\&quot;,\&quot;first_name\&quot;:\&quot;Domini\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:2,\&quot;ip_address\&quot;:\&quot;21.158.87.126\&quot;,\&quot;last_name\&quot;:\&quot;Bateman\&quot;},{\&quot;email\&quot;:\&quot;kteresa2@joomla.org\&quot;,\&quot;first_name\&quot;:\&quot;Kariotta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:3,\&quot;ip_address\&quot;:\&quot;26.86.41.10\&quot;,\&quot;last_name\&quot;:\&quot;Teresa\&quot;},{\&quot;email\&quot;:\&quot;cfernandes3@samsung.com\&quot;,\&quot;first_name\&quot;:\&quot;Cosetta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:4,\&quot;ip_address\&quot;:\&quot;142.79.228.8\&quot;,\&quot;last_name\&quot;:\&quot;Fernandes\&quot;},{\&quot;email\&quot;:\&quot;hheindrich4@psu.edu\&quot;,\&quot;first_name\&quot;:\&quot;Haze\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:5,\&quot;ip_address\&quot;:\&quot;249.87.69.82\&quot;,\&quot;last_name\&quot;:\&quot;Heindrich\&quot;},{\&quot;email\&quot;:\&quot;aatwell5@disqus.com\&quot;,\&quot;first_name\&quot;:\&quot;Abey\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:6,\&quot;ip_address\&quot;:\&quot;194.4.244.83\&quot;,\&quot;last_name\&quot;:\&quot;Atwell\&quot;},{\&quot;email\&quot;:\&quot;gteresse6@sourceforge.net\&quot;,\&quot;first_name\&quot;:\&quot;Greggory\&quot;,\&quot;gender\&quot;:\&quot;Bigender\&quot;,\&quot;id\&quot;:7,\&quot;ip_address\&quot;:\&quot;219.161.232.148\&quot;,\&quot;last_name\&quot;:\&quot;Teresse\&quot;},{\&quot;email\&quot;:\&quot;bplitz7@house.gov\&quot;,\&quot;first_name\&quot;:\&quot;Brok\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:8,\&quot;ip_address\&quot;:\&quot;189.72.4.218\&quot;,\&quot;last_name\&quot;:\&quot;Plitz\&quot;},{\&quot;email\&quot;:\&quot;mlissandri8@ycombinator.com\&quot;,\&quot;first_name\&quot;:\&quot;Maggie\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:9,\&quot;ip_address\&quot;:\&quot;204.69.47.52\&quot;,\&quot;last_name\&quot;:\&quot;Lissandri\&quot;},{\&quot;email\&quot;:\&quot;ghuett9@51.la\&quot;,\&quot;first_name\&quot;:\&quot;Garrott\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:10,\&quot;ip_address\&quot;:\&quot;117.118.239.60\&quot;,\&quot;last_name\&quot;:\&quot;Huett\&quot;}]}}&quot;</span>)
+    }
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_convert_xml_to_json_err</span>() {
+        <span class="ident"><span class="kw">super</span>::xml_to_json_convert::xml_to_json</span>(<span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>)).<span class="ident">to_string</span>();
+    }
+
+}
+</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rust_miscellaneous_pkg" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
+</body></html>

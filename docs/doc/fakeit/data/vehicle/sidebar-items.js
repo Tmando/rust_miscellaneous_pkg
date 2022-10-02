@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["FUEL_TYPE",""],["MAKER",""],["MODEL",""],["TRANSMISSION_TYPE",""],["TYPE",""]]});

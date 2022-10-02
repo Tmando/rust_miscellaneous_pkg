@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["address",""],["animal",""],["beer",""],["color",""],["company",""],["computer",""],["contact",""],["currency",""],["datetime",""],["files",""],["hacker",""],["hipster",""],["internet",""],["job",""],["language",""],["log_level",""],["lorem",""],["payment",""],["person",""],["status_code",""],["vehicle",""]]});

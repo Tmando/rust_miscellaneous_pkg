@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["car_maker",""],["car_model",""],["fuel",""],["info",""],["transmission_gear",""],["vehicle_type",""]],"struct":[["Info",""]]});

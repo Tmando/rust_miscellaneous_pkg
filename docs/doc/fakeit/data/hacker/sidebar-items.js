@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["ABBREVIATION",""],["ADJECTIVE",""],["INGVERB",""],["NOUN",""],["PHRASE",""],["VERB",""]]});

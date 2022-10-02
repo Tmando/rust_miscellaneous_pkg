@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["ClipboardFormatValues",""],["ObjectValues",""]],"struct":[["Anchor",""],["AutoFill",""],["AutoSizePicture",""],["ClientData",""],["ClipboardFormat",""],["CommentColumnTarget",""],["CommentRowTarget",""],["MoveWithCells",""],["ResizeWithCells",""],["Visible",""]]});
