@@ -10,3 +10,4 @@ pub mod matrix_operations;
 pub mod excel_operations;
 pub mod crypto;
 pub mod faker;
+pub mod xml_to_json_convert;
