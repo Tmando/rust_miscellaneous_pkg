@@ -1,6 +1,5 @@
-//! This is module which allows you to resize images. 
+//! This is a module which allows you to resize images. 
 //! With this module it is possible to resize images with different algorithms.
-
 pub mod image_resizer {
     use std::path::Path;
 

@@ -1,9 +1,11 @@
+//! Collection of basic file operations
 pub mod basic_file_operation {
     use std::fs;
     use std::io::Write;
     use std::io::{self, BufRead};
     use std::path::Path;
 
+    /// Read file and put it into a string
     pub fn read_file_to_string(file_path: impl AsRef<Path>)->String{
         let res = fs::read_to_string(file_path);
         match res {

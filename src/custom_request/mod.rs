@@ -1,3 +1,4 @@
+//! Module to create HTTP basic Requests
 pub mod custom_request {
     use bytes::Bytes;
     use reqwest::Client;

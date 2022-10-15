@@ -1,29 +1,36 @@
+//! Collection of crypto algorithms
 pub mod crypto{
     use bytes::Bytes;
 
+    /// return a sha224 hash of a string
     pub fn get_sha224(input:Bytes)->String{
         let hash = openssl::sha::sha224(&input);
         return hex::encode(hash);
     }
-
+    /// return a sha256 hash of a string
     pub fn get_sha256(input:Bytes)->String{
         let hash = openssl::sha::sha256(&input);
         return hex::encode(hash);
     }
 
+    /// return a sha384 hash of a string
     pub fn get_sha384(input:Bytes)->String{
         let hash = openssl::sha::sha384(&input);
         return hex::encode(hash);
     }
 
+    /// return a sha512 hash of a string
     pub fn get_sha512(input:Bytes)->String{
         let hash = openssl::sha::sha512(&input);
         return hex::encode(hash);
     }
+
+    /// return a sha1 hash of a string
     pub fn get_sha1(input:Bytes)->String{
         let hash = openssl::sha::sha1(&input);
         return hex::encode(hash);
     }
+    
 }
 
 mod test{
