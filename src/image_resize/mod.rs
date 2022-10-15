@@ -57,7 +57,7 @@ pub mod image_resizer {
             Err(_err) => return false,
         };
 
-        if only_shrink && ((nwidth > decoded_image.width()) ||  (nwidth > decoded_image.width())){
+        if only_shrink && ((nwidth > decoded_image.width()) ||  (nheight > decoded_image.height())){
             return false
         }
 
