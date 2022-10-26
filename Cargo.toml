@@ -1,13 +1,12 @@
 [package]
 name = "rust_miscellaneous_pkg"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 reqwest = { version = "0.11", features = ["blocking","json","cookies"]}
-
 serde = "1.0.114"
 serde_json = "1.0"
 serde_derive = "1.0.114"
@@ -15,11 +14,8 @@ bytes = "1"
 base64="0.13.0"
 image="0.24.3"
 chrono = "0.4"
-string-builder = "0.2.0"
 rand = "0.8.5"
 rayon = "1.5.3"
-rand_pcg = "0.3.1"
-extendr-api = "0.3.1"
 futures = "0.3.23"
 tokio-test = "0.4.2"
 bio = "0.41.0"
@@ -32,4 +28,4 @@ fakeit = "1.1.1"
 quickxml_to_serde = "0.5.0"
 
 [profile.test]
-opt-level = 3
+opt-level = 1

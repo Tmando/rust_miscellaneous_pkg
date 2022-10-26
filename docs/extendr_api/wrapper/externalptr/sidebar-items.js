@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["ExternalPtr","Wrapper for creating R objects containing any Rust object."]]});
