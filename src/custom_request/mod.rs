@@ -4,7 +4,7 @@ pub mod custom_request {
     use reqwest::Client;
     use reqwest::Method;
     use std::collections::HashMap;
-    use serde::{Serialize, Deserialize};
+    use serde::{ Serialize, Deserialize };
     #[derive(Serialize, Deserialize, Debug)]
     pub struct CustomResponse {
         pub headers: HashMap<String, String>,
@@ -16,7 +16,7 @@ pub mod custom_request {
     }
     /// This function converts a HeaderMap to a header HashMap
     fn get_response_headers(
-        response_headers: &reqwest::header::HeaderMap,
+        response_headers: &reqwest::header::HeaderMap
     ) -> HashMap<String, String> {
         let mut headers = HashMap::<String, String>::new();
         for (key, value) in response_headers.iter() {
@@ -24,15 +24,15 @@ pub mod custom_request {
         }
         return headers;
     }
-    /// This function creates a header HashMap from a HashMap  
+    /// This function creates a header HashMap from a HashMap
     fn create_request_header(
-        request_headers: HashMap<String, String>,
+        request_headers: HashMap<String, String>
     ) -> reqwest::header::HeaderMap {
         let mut headers = reqwest::header::HeaderMap::new();
         for (k, v) in request_headers.iter() {
             headers.insert(
                 reqwest::header::HeaderName::from_bytes(k.as_bytes()).unwrap(),
-                reqwest::header::HeaderValue::from_str(v).unwrap(),
+                reqwest::header::HeaderValue::from_str(v).unwrap()
             );
         }
         return headers;
@@ -60,7 +60,7 @@ pub mod custom_request {
         request_headers: Option<HashMap<String, String>>,
         request_query_params: Option<HashMap<String, String>>,
         request_form: Option<HashMap<String, String>>,
-        request_body: Option<Bytes>,
+        request_body: Option<Bytes>
     ) -> Result<CustomResponse, reqwest::Error> {
         let http_method = get_http_method(method);
         let client = Client::new();
@@ -80,7 +80,9 @@ pub mod custom_request {
         let res = req.send();
         let res = match res.await {
             Ok(res) => res,
-            Err(err) => return Err(err),
+            Err(err) => {
+                return Err(err);
+            }
         };
         let res_headers_response_map = res.headers();
         let res_map_headers = get_response_headers(res_headers_response_map);
@@ -107,57 +109,69 @@ mod tests {
     use tokio_test;
     #[test]
     fn test_get_request() {
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/get".to_string(),
-            "GET".to_string(),
-            None,
-            None,
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/get".to_string(),
+                    "GET".to_string(),
+                    None,
+                    None,
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
 
     #[test]
     fn test_post_request() {
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/post".to_string(),
-            "POST".to_string(),
-            None,
-            None,
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/post".to_string(),
+                    "POST".to_string(),
+                    None,
+                    None,
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
 
     #[test]
     fn test_put_request() {
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/put".to_string(),
-            "PUT".to_string(),
-            None,
-            None,
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/put".to_string(),
+                    "PUT".to_string(),
+                    None,
+                    None,
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
 
     #[test]
     fn test_delete_request() {
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/delete".to_string(),
-            "DELETE".to_string(),
-            None,
-            None,
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/delete".to_string(),
+                    "DELETE".to_string(),
+                    None,
+                    None,
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
 
@@ -168,15 +182,18 @@ mod tests {
             (String::from("test_2"), String::from("Hallo 1")),
             (String::from("test_3"), String::from("Hallo 3")),
         ]);
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/headers".to_string(),
-            "GET".to_string(),
-            Some(headers),
-            None,
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/headers".to_string(),
+                    "GET".to_string(),
+                    Some(headers),
+                    None,
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
     #[test]
@@ -187,15 +204,18 @@ mod tests {
             (String::from("test_3"), String::from("Hallo 3")),
         ]);
 
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/get".to_string(),
-            "GET".to_string(),
-            None,
-            Some(query_params),
-            None,
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/get".to_string(),
+                    "GET".to_string(),
+                    None,
+                    Some(query_params),
+                    None,
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
 
@@ -207,21 +227,25 @@ mod tests {
             (String::from("test_3"), String::from("Hallo 3")),
         ]);
 
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/put".to_string(),
-            "PUT".to_string(),
-            None,
-            None,
-            Some(form_params),
-            None,
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/put".to_string(),
+                    "PUT".to_string(),
+                    None,
+                    None,
+                    Some(form_params),
+                    None
+                )
+            )
+            .unwrap();
         assert_eq!("200 OK", response.status_code);
     }
     #[test]
     fn test_xml() {
         let headers = HashMap::from([(String::from("accept"), String::from("application/xml"))]);
-        let req_body = "<?xml version=\'1.0\' encoding=\'us-ascii\'?>
+        let req_body =
+            "<?xml version=\'1.0\' encoding=\'us-ascii\'?>
         <!--  A SAMPLE set of slides  -->
         <slideshow 
           title=\"Sample Slide Show\"
@@ -249,22 +273,26 @@ mod tests {
           </slide>
         </slideshow>
       ";
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/put".to_string(),
-            "PUT".to_string(),
-            Some(headers),
-            None,
-            None,
-            Some(bytes::Bytes::from(req_body)),
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/put".to_string(),
+                    "PUT".to_string(),
+                    Some(headers),
+                    None,
+                    None,
+                    Some(bytes::Bytes::from(req_body))
+                )
+            )
+            .unwrap();
         let v: serde_json::Value = serde_json::from_str(&response.response_text).unwrap();
         assert_eq!(v["data"], req_body);
     }
     #[test]
     fn test_json() {
         let headers = HashMap::from([(String::from("accept"), String::from("application/json"))]);
-        let req_body = r#"{
+        let req_body =
+            r#"{
             "slideshow": {
                 "author": "Yours Truly",
                 "date": "date of publication",
@@ -285,15 +313,18 @@ mod tests {
                         "title": "Sample Slide Show"
                         }
           }"#;
-        let response = tokio_test::block_on(super::custom_request::create_request(
-            "https://httpbin.org/put".to_string(),
-            "PUT".to_string(),
-            Some(headers),
-            None,
-            None,
-            Some(bytes::Bytes::from(req_body)),
-        ))
-        .unwrap();
+        let response = tokio_test
+            ::block_on(
+                super::custom_request::create_request(
+                    "https://httpbin.org/put".to_string(),
+                    "PUT".to_string(),
+                    Some(headers),
+                    None,
+                    None,
+                    Some(bytes::Bytes::from(req_body))
+                )
+            )
+            .unwrap();
         let v: serde_json::Value = serde_json::from_str(&response.response_text).unwrap();
         assert_eq!(v["data"], req_body);
     }
