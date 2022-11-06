@@ -422,424 +422,432 @@
 <span id="417">417</span>
 <span id="418">418</span>
 <span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Collection to create different fake data</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">faker</span>{
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_city</span>()-&gt;<span class="ident">String</span>{
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">faker</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_city</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::city</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_country</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_country</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::country</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_country_abr</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_country_abr</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::country_abr</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_latitude</span>()-&gt;<span class="ident">f32</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_latitude</span>() -&gt; <span class="ident">f32</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::latitude</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_longitude</span>()-&gt;<span class="ident">f32</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_longitude</span>() -&gt; <span class="ident">f32</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::longitude</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_state</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_state</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::state</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::street</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::street_name</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_number</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_number</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::street_number</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_prefix</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_prefix</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::street_prefix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_suffix</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_street_suffix</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::street_suffix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_zip</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_zip</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::address::zip</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_anmimal</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_anmimal</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::animal::animal</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cat</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cat</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::animal::cat</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_dog</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_dog</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::animal::dog</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_farm</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_farm</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::animal::farm</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pet_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pet_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::animal::pet_name</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_alcohol</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_alcohol</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::alcohol</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_blg</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_blg</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::blg</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hop</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hop</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::hop</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ibu</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ibu</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::ibu</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_malt</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_malt</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::malt</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::name</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_style</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_style</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::style</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_yeast</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_yeast</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::beer::yeast</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bool</span>()-&gt;<span class="ident">bool</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bool</span>() -&gt; <span class="ident">bool</span> {
         <span class="kw">return</span> <span class="ident">fakeit::bool_rand::bool</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_full_color</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_full_color</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::color::full</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hex_color</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hex_color</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::color::hex</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_rgb_color</span>()-&gt;[<span class="ident">i16</span>;<span class="number">3</span>]{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_rgb_color</span>() -&gt; [<span class="ident">i16</span>; <span class="number">3</span>] {
         <span class="kw">return</span> <span class="ident">fakeit::color::rgb</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_safe_color</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_safe_color</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::color::safe</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_company</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_company</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::company::company</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_buzzword</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_buzzword</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::company::buzzword</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bs</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bs</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::company::bs</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_company_suffix</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_company_suffix</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::company::company_suffix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_email</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_email</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::contact::email</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_phone</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_phone</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::contact::phone</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_phone_formatted</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_phone_formatted</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::contact::phone_formatted</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_currency_long</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_currency_long</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::currency::long</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_currency_short</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_currency_short</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::currency::short</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_day</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_day</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::day</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hour</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hour</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::hour</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_minute</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_minute</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::minute</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_secound</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_secound</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::second</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_timezone</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_timezone</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::timezone</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_week_day</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_week_day</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::week_day</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_year</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_year</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::datetime::year</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::file::extension</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mime_type</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mime_type</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::file::mime_type</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_abbreviation</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_abbreviation</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::abbreviation</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_adjective</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_adjective</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::adjective</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ingverb</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ingverb</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::ingverb</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_noun</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_noun</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::noun</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pharse</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pharse</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::phrase</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_verb</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_verb</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hacker::verb</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hippster_word</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_hippster_word</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::hipster::word</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_domain_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_domain_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::domain_name</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_domain_suffix</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_domain_suffix</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::domain_suffix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_method</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_http_method</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::http_method</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ipv4_address</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ipv4_address</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::ipv4_address</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ipv6_address</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ipv6_address</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::ipv6_address</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mac_address</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mac_address</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::mac_address</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_username</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_username</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::internet::username</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_descriptor</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_descriptor</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::job::descriptor</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_level</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_level</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::job::level</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_title</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_job_title</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::job::title</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_abbreviation</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_abbreviation</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::language::abbreviation</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_programming</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_programming</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::language::programming</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_random</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_language_random</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::language::random</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_appache</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_appache</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::log_level::apache</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_general</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_general</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::log_level::general</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_sys_log</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_log_level_sys_log</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::log_level::syslog</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_full_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_full_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::name::full</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_first_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_first_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::name::first</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_last_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_last_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::name::last</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_prefix_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_prefix_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::name::prefix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_suffix_name</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_suffix_name</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::name::suffix</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_generate_password</span>(<span class="ident">upper</span>:<span class="ident">bool</span>,<span class="ident">numeric</span>:<span class="ident">bool</span>,<span class="ident">special</span>:<span class="ident">bool</span>,<span class="ident">num</span>:<span class="ident">i8</span>)-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_generate_password</span>(<span class="ident">upper</span>: <span class="ident">bool</span>, <span class="ident">numeric</span>: <span class="ident">bool</span>, <span class="ident">special</span>: <span class="ident">bool</span>, <span class="ident">num</span>: <span class="ident">i8</span>) -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::password::generate</span>(<span class="ident">upper</span>, <span class="ident">numeric</span>, <span class="ident">special</span>, <span class="ident">num</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_type</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_type</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::payment::credit_card_type</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_number</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_number</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::payment::credit_card_number</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_luhn_number</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_luhn_number</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::payment::credit_card_luhn_number</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_exp</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_exp</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::payment::credit_card_exp</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_ccv</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_credit_card_ccv</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::payment::credit_card_cvv</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_status_codes_general</span>()-&gt;<span class="ident">i16</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_status_codes_general</span>() -&gt; <span class="ident">i16</span> {
         <span class="kw">return</span> <span class="ident">fakeit::status_code::general</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_status_codes_simple</span>()-&gt;<span class="ident">i16</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_status_codes_simple</span>() -&gt; <span class="ident">i16</span> {
         <span class="kw">return</span> <span class="ident">fakeit::status_code::simple</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uuid_v1</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uuid_v1</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::unique::uuid_v1</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uuid_v4</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_uuid_v4</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::unique::uuid_v4</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_chrome</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_chrome</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::chrome</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_firefox</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_firefox</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::firefox</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_linux_platform_token</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_linux_platform_token</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::linux_platform_token</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_mac_platform_token</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_mac_platform_token</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::mac_platform_token</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_opera</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_opera</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::opera</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_random_platform</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_random_platform</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::random_platform</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_safari</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_safari</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::safari</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_windows_platform_token</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_user_agent_windows_platform_token</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::user_agent::windows_platform_token</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_car_maker</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_car_maker</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::vehicle::car_maker</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_car_model</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_car_model</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::vehicle::car_model</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_fuel</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_fuel</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::vehicle::fuel</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_transmission_gear</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_transmission_gear</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::vehicle::transmission_gear</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_vehicle_type</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_vehicle_type</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::vehicle::vehicle_type</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_paragraph</span>(<span class="ident">count</span>:<span class="ident">i64</span>,<span class="ident">sentence_count</span>:<span class="ident">i64</span>,<span class="ident">word_count</span>:<span class="ident">i64</span>,<span class="ident">separator</span>:<span class="ident">String</span>)-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_paragraph</span>(
+        <span class="ident">count</span>: <span class="ident">i64</span>,
+        <span class="ident">sentence_count</span>: <span class="ident">i64</span>,
+        <span class="ident">word_count</span>: <span class="ident">i64</span>,
+        <span class="ident">separator</span>: <span class="ident">String</span>
+    ) -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::words::paragraph</span>(<span class="ident">count</span>, <span class="ident">sentence_count</span>, <span class="ident">word_count</span>, <span class="ident">separator</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_question</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_question</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::words::question</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_quote</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_quote</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::words::quote</span>();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_sentence</span>(<span class="ident">word_count</span>:<span class="ident">i64</span>)-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_sentence</span>(<span class="ident">word_count</span>: <span class="ident">i64</span>) -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::words::sentence</span>(<span class="ident">word_count</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_word</span>()-&gt;<span class="ident">String</span>{
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_word</span>() -&gt; <span class="ident">String</span> {
         <span class="kw">return</span> <span class="ident">fakeit::words::word</span>();
     }
-
 }</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rust_miscellaneous_pkg" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>

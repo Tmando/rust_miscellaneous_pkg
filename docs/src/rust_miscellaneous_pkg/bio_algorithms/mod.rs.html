@@ -224,39 +224,6 @@
 <span id="219">219</span>
 <span id="220">220</span>
 <span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
-<span id="254">254</span>
 </pre><pre class="rust"><code><span class="doccomment">//! This is a collection of bio algorithms</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">bio_algorithms</span> {
     <span class="doccomment">/// This function calculates the hemming distance of two strings</span>
@@ -267,49 +234,49 @@
     }
 
     <span class="doccomment">/// This function calculates the levenshtein distance of two strings</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/alignment/distance/fn.levenshtein.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">levenshtein</span>(<span class="ident">alpha_str</span>: <span class="ident">String</span>, <span class="ident">beta_str</span>: <span class="ident">String</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">return</span> <span class="ident">bio::alignment::distance::levenshtein</span>(<span class="ident">alpha_str</span>.<span class="ident">as_bytes</span>(), <span class="ident">beta_str</span>.<span class="ident">as_bytes</span>());
     }
     <span class="doccomment">/// This calculates the SIMD-accelerated Levenshtein</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/alignment/distance/simd/fn.levenshtein.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">levenshtein_smid</span>(<span class="ident">alpha_str</span>: <span class="ident">String</span>, <span class="ident">beta_str</span>: <span class="ident">String</span>) -&gt; <span class="ident">u32</span> {
         <span class="kw">return</span> <span class="ident">bio::alignment::distance::simd::levenshtein</span>(
             <span class="ident">alpha_str</span>.<span class="ident">as_bytes</span>(),
-            <span class="ident">beta_str</span>.<span class="ident">as_bytes</span>(),
+            <span class="ident">beta_str</span>.<span class="ident">as_bytes</span>()
         );
     }
     <span class="doccomment">/// This calculates the SIMD-accelerated Hamming Distance</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/alignment/distance/simd/fn.hamming.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hamming_smid</span>(<span class="ident">alpha_str</span>: <span class="ident">String</span>, <span class="ident">beta_str</span>: <span class="ident">String</span>) -&gt; <span class="ident">u64</span> {
         <span class="kw">return</span> <span class="ident">bio::alignment::distance::simd::hamming</span>(<span class="ident">alpha_str</span>.<span class="ident">as_bytes</span>(), <span class="ident">beta_str</span>.<span class="ident">as_bytes</span>());
     }
     <span class="doccomment">/// This is a function for the Backward oracle matching algorithm</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/pattern_matching/bom/index.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bom_matching</span>(<span class="ident">pattern</span>: <span class="ident">String</span>, <span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">bom</span> <span class="op">=</span> <span class="ident">bio::pattern_matching::bom::BOM::new</span>(<span class="ident">pattern</span>.<span class="ident">as_bytes</span>());
         <span class="kw">return</span> <span class="ident">bom</span>.<span class="ident">find_all</span>(<span class="ident">text</span>.<span class="ident">as_bytes</span>()).<span class="ident">collect</span>();
     }
     <span class="doccomment">/// This is a function which calculates the Backward nondeterministic matching</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/pattern_matching/bndm/index.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bndm_matching</span>(<span class="ident">pattern</span>: <span class="ident">String</span>, <span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">bndm</span> <span class="op">=</span> <span class="ident">bio::pattern_matching::bndm::BNDM::new</span>(<span class="ident">pattern</span>.<span class="ident">as_bytes</span>());
         <span class="kw">return</span> <span class="ident">bndm</span>.<span class="ident">find_all</span>(<span class="ident">text</span>.<span class="ident">as_bytes</span>()).<span class="ident">collect</span>();
     }
     <span class="doccomment">/// This function which calculates the horspool matching</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/pattern_matching/horspool/index.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">horspool_matching</span>(<span class="ident">pattern</span>: <span class="ident">String</span>, <span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">horspool</span> <span class="op">=</span> <span class="ident">bio::pattern_matching::horspool::Horspool::new</span>(<span class="ident">pattern</span>.<span class="ident">as_bytes</span>());
         <span class="kw">return</span> <span class="ident">horspool</span>.<span class="ident">find_all</span>(<span class="ident">text</span>.<span class="ident">as_bytes</span>()).<span class="ident">collect</span>();
     }
     <span class="doccomment">/// This function which calculates the kmp matching</span>
-    <span class="doccomment">/// </span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// &lt;https://docs.rs/bio/latest/bio/pattern_matching/kmp/index.html&gt;</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kmp_matching</span>(<span class="ident">pattern</span>: <span class="ident">String</span>, <span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">kmp</span> <span class="op">=</span> <span class="ident">bio::pattern_matching::kmp::KMP::new</span>(<span class="ident">pattern</span>.<span class="ident">as_bytes</span>());
@@ -427,90 +394,56 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hamming_house_baum</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;Baum&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;Haus&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">2</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;Baum&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;Haus&quot;</span>.<span class="ident">to_string</span>()), <span class="number">2</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hamming_distance_one</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;00110&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;00100&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">1</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;00110&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;00100&quot;</span>.<span class="ident">to_string</span>()), <span class="number">1</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hamming_distance_two</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;12345&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;13344&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">2</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;12345&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;13344&quot;</span>.<span class="ident">to_string</span>()), <span class="number">2</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hamming_distance_three</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;44555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">3</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;44555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()), <span class="number">3</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hamming_distance_four</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;43555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">4</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::hamming</span>(<span class="string">&quot;43555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()), <span class="number">4</span>);
     }
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_house_baum</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;Baum&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;Haus&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">2</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;Baum&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;Haus&quot;</span>.<span class="ident">to_string</span>()), <span class="number">2</span>);
     }
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_rust_cpp</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;rust&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;cpp&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">4</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;rust&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;cpp&quot;</span>.<span class="ident">to_string</span>()), <span class="number">4</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_distance_one</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;00110&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;00100&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">1</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;00110&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;00100&quot;</span>.<span class="ident">to_string</span>()), <span class="number">1</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_distance_two</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;12345&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;13344&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">2</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;12345&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;13344&quot;</span>.<span class="ident">to_string</span>()), <span class="number">2</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_distance_three</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;44555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">3</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;44555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()), <span class="number">3</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_levenshtein_distance_four</span>() {
-        <span class="macro">assert_eq!</span>(
-            <span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;43555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="number">4</span>
-        );
+        <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::bio_algorithms::levenshtein</span>(<span class="string">&quot;43555&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;44666&quot;</span>.<span class="ident">to_string</span>()), <span class="number">4</span>);
     }
-}
-</code></pre></div>
+}</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rust_miscellaneous_pkg" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>

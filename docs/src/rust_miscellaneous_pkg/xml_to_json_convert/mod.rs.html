@@ -116,6 +116,11 @@
 <span id="111">111</span>
 <span id="112">112</span>
 <span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Module to convert json from xml</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xml_to_json_convert</span> {
     <span class="kw">use</span> <span class="ident">quickxml_to_serde</span>::<span class="kw-2">*</span>;
@@ -123,20 +128,24 @@
     <span class="doccomment">/// This function converts an xml string to a json Value</span>
     <span class="doccomment">///</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xml_to_json</span>(<span class="ident">xml_input</span>: <span class="ident">String</span>) -&gt; <span class="ident">Value</span> {
-        <span class="kw">let</span> <span class="ident">json_out</span> <span class="op">=</span>
-            <span class="ident">quickxml_to_serde::xml_string_to_json</span>(<span class="ident">xml_input</span>, <span class="kw-2">&amp;</span><span class="ident">Config::new_with_defaults</span>());
+        <span class="kw">let</span> <span class="ident">json_out</span> <span class="op">=</span> <span class="ident">quickxml_to_serde::xml_string_to_json</span>(
+            <span class="ident">xml_input</span>,
+            <span class="kw-2">&amp;</span><span class="ident">Config::new_with_defaults</span>()
+        );
         <span class="kw">match</span> <span class="ident">json_out</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; <span class="kw">return</span> <span class="ident">res</span>,
+            <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; {
+                <span class="kw">return</span> <span class="ident">res</span>;
+            }
             <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="ident">std::panic::panic_any</span>(<span class="ident">err</span>),
         }
     }
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
-
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_convert_xml_to_json_one</span>() {
-        <span class="kw">let</span> <span class="ident">xml_input</span> <span class="op">=</span> <span class="string">r#&quot;&lt;dataset&gt;
+        <span class="kw">let</span> <span class="ident">xml_input</span> <span class="op">=</span>
+            <span class="string">r#&quot;&lt;dataset&gt;
         &lt;record&gt;
         &lt;id&gt;1&lt;/id&gt;
         &lt;first_name&gt;Nerita&lt;/first_name&gt;
@@ -219,16 +228,16 @@
         &lt;/record&gt;
         &lt;/dataset&gt;&quot;#</span>;
         <span class="kw">let</span> <span class="ident">json_out</span> <span class="op">=</span> <span class="ident"><span class="kw">super</span>::xml_to_json_convert::xml_to_json</span>(<span class="ident">String::from</span>(<span class="ident">xml_input</span>)).<span class="ident">to_string</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">json_out</span>,
-            <span class="string">&quot;{\&quot;dataset\&quot;:{\&quot;record\&quot;:[{\&quot;email\&quot;:\&quot;nstanney0@domainmarket.com\&quot;,\&quot;first_name\&quot;:\&quot;Nerita\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:1,\&quot;ip_address\&quot;:\&quot;223.10.217.33\&quot;,\&quot;last_name\&quot;:\&quot;Stanney\&quot;},{\&quot;email\&quot;:\&quot;dbateman1@chronoengine.com\&quot;,\&quot;first_name\&quot;:\&quot;Domini\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:2,\&quot;ip_address\&quot;:\&quot;21.158.87.126\&quot;,\&quot;last_name\&quot;:\&quot;Bateman\&quot;},{\&quot;email\&quot;:\&quot;kteresa2@joomla.org\&quot;,\&quot;first_name\&quot;:\&quot;Kariotta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:3,\&quot;ip_address\&quot;:\&quot;26.86.41.10\&quot;,\&quot;last_name\&quot;:\&quot;Teresa\&quot;},{\&quot;email\&quot;:\&quot;cfernandes3@samsung.com\&quot;,\&quot;first_name\&quot;:\&quot;Cosetta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:4,\&quot;ip_address\&quot;:\&quot;142.79.228.8\&quot;,\&quot;last_name\&quot;:\&quot;Fernandes\&quot;},{\&quot;email\&quot;:\&quot;hheindrich4@psu.edu\&quot;,\&quot;first_name\&quot;:\&quot;Haze\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:5,\&quot;ip_address\&quot;:\&quot;249.87.69.82\&quot;,\&quot;last_name\&quot;:\&quot;Heindrich\&quot;},{\&quot;email\&quot;:\&quot;aatwell5@disqus.com\&quot;,\&quot;first_name\&quot;:\&quot;Abey\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:6,\&quot;ip_address\&quot;:\&quot;194.4.244.83\&quot;,\&quot;last_name\&quot;:\&quot;Atwell\&quot;},{\&quot;email\&quot;:\&quot;gteresse6@sourceforge.net\&quot;,\&quot;first_name\&quot;:\&quot;Greggory\&quot;,\&quot;gender\&quot;:\&quot;Bigender\&quot;,\&quot;id\&quot;:7,\&quot;ip_address\&quot;:\&quot;219.161.232.148\&quot;,\&quot;last_name\&quot;:\&quot;Teresse\&quot;},{\&quot;email\&quot;:\&quot;bplitz7@house.gov\&quot;,\&quot;first_name\&quot;:\&quot;Brok\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:8,\&quot;ip_address\&quot;:\&quot;189.72.4.218\&quot;,\&quot;last_name\&quot;:\&quot;Plitz\&quot;},{\&quot;email\&quot;:\&quot;mlissandri8@ycombinator.com\&quot;,\&quot;first_name\&quot;:\&quot;Maggie\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:9,\&quot;ip_address\&quot;:\&quot;204.69.47.52\&quot;,\&quot;last_name\&quot;:\&quot;Lissandri\&quot;},{\&quot;email\&quot;:\&quot;ghuett9@51.la\&quot;,\&quot;first_name\&quot;:\&quot;Garrott\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:10,\&quot;ip_address\&quot;:\&quot;117.118.239.60\&quot;,\&quot;last_name\&quot;:\&quot;Huett\&quot;}]}}&quot;</span>)
+        <span class="macro">assert_eq!</span>(
+            <span class="ident">json_out</span>,
+            <span class="string">&quot;{\&quot;dataset\&quot;:{\&quot;record\&quot;:[{\&quot;email\&quot;:\&quot;nstanney0@domainmarket.com\&quot;,\&quot;first_name\&quot;:\&quot;Nerita\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:1,\&quot;ip_address\&quot;:\&quot;223.10.217.33\&quot;,\&quot;last_name\&quot;:\&quot;Stanney\&quot;},{\&quot;email\&quot;:\&quot;dbateman1@chronoengine.com\&quot;,\&quot;first_name\&quot;:\&quot;Domini\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:2,\&quot;ip_address\&quot;:\&quot;21.158.87.126\&quot;,\&quot;last_name\&quot;:\&quot;Bateman\&quot;},{\&quot;email\&quot;:\&quot;kteresa2@joomla.org\&quot;,\&quot;first_name\&quot;:\&quot;Kariotta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:3,\&quot;ip_address\&quot;:\&quot;26.86.41.10\&quot;,\&quot;last_name\&quot;:\&quot;Teresa\&quot;},{\&quot;email\&quot;:\&quot;cfernandes3@samsung.com\&quot;,\&quot;first_name\&quot;:\&quot;Cosetta\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:4,\&quot;ip_address\&quot;:\&quot;142.79.228.8\&quot;,\&quot;last_name\&quot;:\&quot;Fernandes\&quot;},{\&quot;email\&quot;:\&quot;hheindrich4@psu.edu\&quot;,\&quot;first_name\&quot;:\&quot;Haze\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:5,\&quot;ip_address\&quot;:\&quot;249.87.69.82\&quot;,\&quot;last_name\&quot;:\&quot;Heindrich\&quot;},{\&quot;email\&quot;:\&quot;aatwell5@disqus.com\&quot;,\&quot;first_name\&quot;:\&quot;Abey\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:6,\&quot;ip_address\&quot;:\&quot;194.4.244.83\&quot;,\&quot;last_name\&quot;:\&quot;Atwell\&quot;},{\&quot;email\&quot;:\&quot;gteresse6@sourceforge.net\&quot;,\&quot;first_name\&quot;:\&quot;Greggory\&quot;,\&quot;gender\&quot;:\&quot;Bigender\&quot;,\&quot;id\&quot;:7,\&quot;ip_address\&quot;:\&quot;219.161.232.148\&quot;,\&quot;last_name\&quot;:\&quot;Teresse\&quot;},{\&quot;email\&quot;:\&quot;bplitz7@house.gov\&quot;,\&quot;first_name\&quot;:\&quot;Brok\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:8,\&quot;ip_address\&quot;:\&quot;189.72.4.218\&quot;,\&quot;last_name\&quot;:\&quot;Plitz\&quot;},{\&quot;email\&quot;:\&quot;mlissandri8@ycombinator.com\&quot;,\&quot;first_name\&quot;:\&quot;Maggie\&quot;,\&quot;gender\&quot;:\&quot;Female\&quot;,\&quot;id\&quot;:9,\&quot;ip_address\&quot;:\&quot;204.69.47.52\&quot;,\&quot;last_name\&quot;:\&quot;Lissandri\&quot;},{\&quot;email\&quot;:\&quot;ghuett9@51.la\&quot;,\&quot;first_name\&quot;:\&quot;Garrott\&quot;,\&quot;gender\&quot;:\&quot;Male\&quot;,\&quot;id\&quot;:10,\&quot;ip_address\&quot;:\&quot;117.118.239.60\&quot;,\&quot;last_name\&quot;:\&quot;Huett\&quot;}]}}&quot;</span>
+        )
     }
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">should_panic</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_convert_xml_to_json_err</span>() {
         <span class="ident"><span class="kw">super</span>::xml_to_json_convert::xml_to_json</span>(<span class="ident">String::from</span>(<span class="string">&quot;&quot;</span>)).<span class="ident">to_string</span>();
     }
-
-}
-</code></pre></div>
+}</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rust_miscellaneous_pkg" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
 </body></html>
