@@ -1,6 +1,6 @@
 [package]
 name = "rust_miscellaneous_pkg"
-version = "0.4.1"
+version = "0.4.2"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -22,11 +22,12 @@ bio = "0.41.0"
 nalgebra = "0.31.1"
 umya-spreadsheet = "0.8.0"
 regex = "1.6.0"
-openssl = "0.10.41"
+openssl = "0.10.42"
 hex = "0.4.3"
 fakeit = "1.1.1"
 quickxml_to_serde = "0.5.0"
 uuid = "^1"
+docx-rs = "0.4.5"
 bit-vec = {version = "0.6.3", features = ["serde"]}
 postgres = {version = "^0.19.4", features = ["array-impls","with-bit-vec-0_6","with-chrono-0_4","with-eui48-0_4","with-eui48-1","with-geo-types-0_6","with-geo-types-0_7","with-serde_json-1","with-uuid-0_8","with-uuid-1","with-time-0_2","with-time-0_3"]}
 geo-types = "0.7.7"
