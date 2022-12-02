@@ -13,3 +13,4 @@ pub mod faker;
 pub mod xml_to_json_convert;
 pub mod regex_operations;
 pub mod postgres_operation;
+pub mod sql_operation;
