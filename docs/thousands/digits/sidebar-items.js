@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["ASCII_DECIMAL","The decimal digits, in ASCII."],["ASCII_HEXADECIMAL","The hexadecimal digits, in ASCII."]]});

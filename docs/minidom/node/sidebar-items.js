@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Node","A node in an element tree."]]});

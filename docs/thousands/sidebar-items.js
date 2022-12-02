@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["digits","Collections of digits."],["policies","Predefined policies."]],"trait":[["Separable","Provides methods for formatting numbers with separators between the digits."]]});

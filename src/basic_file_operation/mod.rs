@@ -22,7 +22,7 @@ pub mod basic_file_operation {
         input_vec: Vec<String>,
         append: bool
     ) -> bool {
-        let file = fs::OpenOptions::new().write(true).create(true).append(append).open(file_path);
+        let file = fs::OpenOptions::new().write(true).append(append).open(file_path);
         let mut file = match file {
             Ok(res) => res,
             Err(_err) => {

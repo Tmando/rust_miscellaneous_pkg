@@ -118,7 +118,7 @@
         <span class="ident">input_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
         <span class="ident">append</span>: <span class="ident">bool</span>
     ) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">fs::OpenOptions::new</span>().<span class="ident">write</span>(<span class="bool-val">true</span>).<span class="ident">create</span>(<span class="bool-val">true</span>).<span class="ident">append</span>(<span class="ident">append</span>).<span class="ident">open</span>(<span class="ident">file_path</span>);
+        <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">fs::OpenOptions::new</span>().<span class="ident">write</span>(<span class="bool-val">true</span>).<span class="ident">append</span>(<span class="ident">append</span>).<span class="ident">open</span>(<span class="ident">file_path</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">file</span> {
             <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; <span class="ident">res</span>,
             <span class="prelude-val">Err</span>(<span class="ident">_err</span>) =&gt; {

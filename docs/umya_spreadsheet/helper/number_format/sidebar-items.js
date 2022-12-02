@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["split",""],["to_formatted_string",""]],"struct":[["DATE_TIME_REGEX",""],["ESCAPE_REGEX",""],["PERCENT_DOLLAR_REGEX",""],["SECTION_REGEX",""],["Split",""]]});

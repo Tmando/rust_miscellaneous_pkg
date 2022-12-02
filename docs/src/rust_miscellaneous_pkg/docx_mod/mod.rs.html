@@ -68,69 +68,71 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">docx_mod</span> {
+    <span class="kw">use</span> <span class="ident">std::ffi::OsStr</span>;
+
     <span class="kw">use</span> <span class="ident">docx_rs</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident">docx_rs::Docx</span>;
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hello</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">DocxError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">std::path::Path::new</span>(<span class="string">&quot;./hello.docx&quot;</span>);
+    <span class="kw">use</span> <span class="ident">serde_json::Value</span>;
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_document</span>(<span class="ident">json_content</span>:<span class="ident">Value</span>,<span class="ident">outputfile_path</span>: <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">OsStr</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">DocxError</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">std::path::Path::new</span>(<span class="kw-2">&amp;</span><span class="ident">outputfile_path</span>);
         <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">std::fs::File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">Docx::new</span>();
-        <span class="kw">let</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">docx</span>,<span class="ident">String::from</span>(<span class="string">&quot;Hallo Welt&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;Heading 1&quot;</span>));
-        <span class="kw">let</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">docx</span>,<span class="ident">String::from</span>(<span class="string">&quot;Hallo Welt 1&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;Heading 9&quot;</span>));
-        <span class="kw">let</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">docx</span>,<span class="ident">String::from</span>(<span class="string">&quot;Hallo Welt 2&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;Heading 10&quot;</span>));
-        <span class="kw">let</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">docx</span>,<span class="ident">String::from</span>(<span class="string">&quot;Hallo Welt 3&quot;</span>), <span class="ident">String::from</span>(<span class="string">&quot;Heading 1&quot;</span>));
-        
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">docx</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">Docx::new</span>());
+        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">json_content</span>.<span class="ident">get</span>(<span class="string">&quot;content&quot;</span>).<span class="ident">unwrap</span>().<span class="ident">as_array</span>().<span class="ident">unwrap</span>();
+        <span class="kw">for</span> <span class="ident">elem</span> <span class="kw">in</span> <span class="ident">content</span>{
+            <span class="kw">let</span> <span class="ident">tag</span> <span class="op">=</span> <span class="ident">elem</span>.<span class="ident">get</span>(<span class="string">&quot;tag&quot;</span>).<span class="ident">unwrap</span>().<span class="ident">as_str</span>().<span class="ident">unwrap</span>();
+            <span class="kw">if</span> <span class="ident">tag</span> <span class="op">==</span> <span class="string">&quot;p&quot;</span> {
+                <span class="ident">docx</span> <span class="op">=</span> <span class="ident">add_paragraph_to_document</span>(<span class="kw-2">&amp;</span><span class="ident">docx</span>,<span class="ident">elem</span>); 
+            }
+        }
         <span class="ident">docx</span>.<span class="ident">build</span>().<span class="ident">pack</span>(<span class="ident">file</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_2</span>()-&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">DocxError</span><span class="op">&gt;</span>{
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">std::path::Path::new</span>(<span class="string">&quot;toc_with_hyperlink.docx&quot;</span>);
-    <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">std::fs::File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">p1</span> <span class="op">=</span> <span class="ident">Paragraph::new</span>()
-        .<span class="ident">add_run</span>(<span class="ident">Run::new</span>().<span class="ident">add_text</span>(<span class="string">&quot;Hello&quot;</span>))
-        .<span class="ident">style</span>(<span class="string">&quot;Heading1&quot;</span>)
-        .<span class="ident">page_break_before</span>(<span class="bool-val">true</span>);
-    <span class="kw">let</span> <span class="ident">style1</span> <span class="op">=</span> <span class="ident">Style::new</span>(<span class="string">&quot;Heading1&quot;</span>, <span class="ident">StyleType::Paragraph</span>).<span class="ident">name</span>(<span class="string">&quot;Heading 1&quot;</span>);
-    <span class="kw">let</span> <span class="ident">p2</span> <span class="op">=</span> <span class="ident">Paragraph::new</span>()
-        .<span class="ident">add_run</span>(<span class="ident">Run::new</span>().<span class="ident">add_text</span>(<span class="string">&quot;World&quot;</span>))
-        .<span class="ident">style</span>(<span class="string">&quot;Heading2&quot;</span>)
-        .<span class="ident">page_break_before</span>(<span class="bool-val">true</span>);
-    <span class="kw">let</span> <span class="ident">style2</span> <span class="op">=</span> <span class="ident">Style::new</span>(<span class="string">&quot;Heading2&quot;</span>, <span class="ident">StyleType::Paragraph</span>).<span class="ident">name</span>(<span class="string">&quot;Heading 2&quot;</span>);
-    <span class="kw">let</span> <span class="ident">p4</span> <span class="op">=</span> <span class="ident">Paragraph::new</span>()
-        .<span class="ident">add_run</span>(<span class="ident">Run::new</span>().<span class="ident">add_text</span>(<span class="string">&quot;Foo&quot;</span>))
-        .<span class="ident">style</span>(<span class="string">&quot;Heading4&quot;</span>)
-        .<span class="ident">page_break_before</span>(<span class="bool-val">true</span>);
-    <span class="kw">let</span> <span class="ident">style4</span> <span class="op">=</span> <span class="ident">Style::new</span>(<span class="string">&quot;Heading4&quot;</span>, <span class="ident">StyleType::Paragraph</span>).<span class="ident">name</span>(<span class="string">&quot;Heading 4&quot;</span>);
-    <span class="ident">Docx::new</span>()
-        .<span class="ident">add_style</span>(<span class="ident">style1</span>)
-        .<span class="ident">add_style</span>(<span class="ident">style2</span>)
-        .<span class="ident">add_style</span>(<span class="ident">style4</span>)
-        .<span class="ident">add_table_of_contents</span>(
-            <span class="ident">TableOfContents::new</span>()
-                .<span class="ident">heading_styles_range</span>(<span class="number">1</span>, <span class="number">3</span>)
-                .<span class="ident">hyperlink</span>()
-                .<span class="ident">alias</span>(<span class="string">&quot;table of contents&quot;</span>),
-        )
-        .<span class="ident">add_paragraph</span>(<span class="ident">p1</span>)
-        .<span class="ident">add_paragraph</span>(<span class="ident">p2</span>)
-        .<span class="ident">add_paragraph</span>(<span class="ident">p4</span>)
-        .<span class="ident">build</span>()
-        .<span class="ident">pack</span>(<span class="ident">file</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(())
-    }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">word_document</span>:<span class="ident">Docx</span>, <span class="ident">text</span>:<span class="ident">String</span>, <span class="ident">style_id</span>:<span class="ident">String</span>)-&gt;<span class="ident">Docx</span>{
-        <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="ident">word_document</span>.<span class="ident">add_paragraph</span>(<span class="ident">Paragraph::new</span>().<span class="ident">style</span>(<span class="kw-2">&amp;</span><span class="ident">style_id</span>).<span class="ident">add_run</span>(<span class="ident">Run::new</span>().<span class="ident">add_text</span>(<span class="ident">text</span>)));
-        <span class="kw">return</span> <span class="ident">document</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_paragraph_to_document</span>(<span class="ident">word_document</span>:<span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Docx</span><span class="op">&gt;</span>, <span class="ident">elem</span>:<span class="kw-2">&amp;</span><span class="ident">Value</span>)-&gt;<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Docx</span><span class="op">&gt;</span>{
+        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">elem</span>.<span class="ident">get</span>(<span class="string">&quot;data&quot;</span>).<span class="ident">unwrap</span>().<span class="ident">as_str</span>().<span class="ident">unwrap</span>();
+        <span class="macro">println!</span>(<span class="string">&quot;{:?}&quot;</span>,<span class="ident">data</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">split_str</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">split</span>(<span class="string">&quot;\n&quot;</span>);
+        <span class="kw">let</span> <span class="ident">word_document</span> <span class="op">=</span> <span class="ident">word_document</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">paragraph</span> <span class="op">=</span> <span class="ident">Paragraph::new</span>();
+        <span class="kw">for</span> <span class="ident">s</span> <span class="kw">in</span> <span class="ident">split_str</span>{
+            <span class="ident">paragraph</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">clone</span>().<span class="ident">add_run</span>(<span class="ident">Run::new</span>().<span class="ident">add_text</span>(<span class="ident">s</span>));
+        }
+        <span class="kw">return</span> <span class="ident">Box::new</span>(<span class="ident">word_document</span>.<span class="ident">add_paragraph</span>(<span class="ident">paragraph</span>));
     }
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">docx_mod_hello_test</span>(){
-        <span class="ident"><span class="kw">super</span>::docx_mod::hello</span>().<span class="ident">unwrap</span>();
-        <span class="ident"><span class="kw">super</span>::docx_mod::test_2</span>().<span class="ident">unwrap</span>();
+    <span class="kw">fn</span> <span class="ident">first_document</span>(){
+        <span class="kw">let</span> <span class="ident">json_value</span> <span class="op">=</span> <span class="string">r#&quot;{
+            &quot;content&quot;: [
+              {
+                &quot;tag&quot;:&quot;p&quot;,
+                &quot;data&quot;:&quot;Hallo Welt&quot;
+              },
+              {
+                &quot;tag&quot;:&quot;p&quot;,
+                &quot;data&quot;:&quot;Hallo Welt 1&quot;
+              },
+              {
+                &quot;tag&quot;:&quot;p&quot;,
+                &quot;data&quot;:&quot;Hallo Welt 2&quot;
+              },
+              {
+                &quot;tag&quot;:&quot;p&quot;,
+                &quot;data&quot;:&quot;Hallo Welt 3&quot;
+              },
+              {
+                &quot;tag&quot;:&quot;p&quot;,
+                &quot;data&quot;:&quot;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,&quot;
+              }
+            ]
+          }&quot;#</span>;
+          <span class="ident"><span class="kw">super</span>::docx_mod::create_document</span>(<span class="ident">serde_json::from_str</span>(<span class="ident">json_value</span>).<span class="ident">unwrap</span>(),<span class="string">&quot;test_document.docx&quot;</span>).<span class="ident">unwrap</span>();
     }
 }</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rust_miscellaneous_pkg" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
