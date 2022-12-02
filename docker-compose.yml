@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=testdb
+    ports:
+      - '5500:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ./:/etc/mysql/mariadb.conf.d/50-server.cnf
+    environment:
+      MYSQL_USER: testuser
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - '0.0.0.0.3307:3306'
+    network_mode: "host"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8133:8080
+volumes:
+  db:
+    driver: local
+  mariadb:
+    driver: local
+networks:
+  backend:
+    driver: bridge
