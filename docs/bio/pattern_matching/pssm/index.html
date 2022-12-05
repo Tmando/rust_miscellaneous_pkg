@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Create a weight matrix representing a set of aligned reference sequences that constitute a motif, and use this matrix to scan query sequences for occurrences of this motif. Complexity: O(n*m) for motif length n and query length m"><meta name="keywords" content="rust, rustlang, rust-lang, pssm"><title>bio::pattern_matching::pssm - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" href="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../bio/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../bio/index.html"><div class="logo-container">
+                    <img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module pssm</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#constants">Constants</a></li><li><a href="#traits">Traits</a></li></ul></div></section><div id="sidebar-vars" data-name="pssm" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../bio/index.html">
+                        <img src="https://raw.githubusercontent.com/rust-bio/rust-bio/master/img/bioferris.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../../index.html">bio</a>::<wbr><a href="../index.html">pattern_matching</a>::<wbr><a class="mod" href="#">pssm</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/bio/pattern_matching/pssm/mod.rs.html#6-304">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Create a weight matrix representing a set of aligned reference sequences
+that constitute a motif, and use this matrix to scan query sequences for
+occurrences of this motif.
+Complexity: O(n*m) for motif length n and query length m</p>
+<p>The position-specific scoring matrix (PSSM), aka position weight matrix (PWM),
+algorithm is implemented for both DNA and amino-acid sequences.</p>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
+<p>use bio::pattern_matching::pssm::DNAMotif;
+let pssm = DNAMotif::from_seqs(vec![
+b“AAAA“.to_vec(),
+b“AATA“.to_vec(),
+b“AAGA“.to_vec(),
+b“AAAA“.to_vec(),
+].as_ref(), None).unwrap();
+let start_pos = pssm.score(b“CCCCCAATA“).unwrap().loc;
+println!(“motif found at position {}”, start_pos);</p>
+<p>/* amino acid sequences are supported, too */
+use pssm::pattern_matching::pssm::ProtMotif;
+let pssm = ProtMotif::from_seqs(vec![
+b“ARNNYM“.to_vec(),
+b“ARNRYM“.to_vec(),
+b“ARNNCM“.to_vec(),
+b“ARNNYM“.to_vec(),
+].as_ref(), None).unwrap();</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item" id="reexport.Error"><code>pub use self::errors::<a class="enum" href="errors/enum.Error.html" title="enum bio::pattern_matching::pssm::errors::Error">Error</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.Result"><code>pub use self::errors::<a class="type" href="errors/type.Result.html" title="type bio::pattern_matching::pssm::errors::Result">Result</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="errors/index.html" title="bio::pattern_matching::pssm::errors mod">errors</a></div><div class="item-right docblock-short"><p>Error definitions for the <code>pssm</code> module.</p>
+</div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.DNAMotif.html" title="bio::pattern_matching::pssm::DNAMotif struct">DNAMotif</a></div><div class="item-right docblock-short"><p>Position-specific scoring matrix for DNA sequences</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.ProtMotif.html" title="bio::pattern_matching::pssm::ProtMotif struct">ProtMotif</a></div><div class="item-right docblock-short"><p>Position-specific scoring matrix for protein sequences</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.ScoredPos.html" title="bio::pattern_matching::pssm::ScoredPos struct">ScoredPos</a></div><div class="item-right docblock-short"><p>Represents motif score &amp; location of match</p>
+</div></div></div><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.DEF_PSEUDO.html" title="bio::pattern_matching::pssm::DEF_PSEUDO constant">DEF_PSEUDO</a></div><div class="item-right docblock-short"><p>default pseudocount - used to prevent 0 tallies</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.EPSILON.html" title="bio::pattern_matching::pssm::EPSILON constant">EPSILON</a></div><div class="item-right docblock-short"><p>approximately zero</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.INVALID_MONO.html" title="bio::pattern_matching::pssm::INVALID_MONO constant">INVALID_MONO</a></div><div class="item-right docblock-short"><p>value representing an invalid monomer in lookup table</p>
+</div></div></div><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Motif.html" title="bio::pattern_matching::pssm::Motif trait">Motif</a></div><div class="item-right docblock-short"><p>Trait containing code shared between DNA and protein implementations
+of the position-specific scoring matrix.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="bio" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
+</body></html>

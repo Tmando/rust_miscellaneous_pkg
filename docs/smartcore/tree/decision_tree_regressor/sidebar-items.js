@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DecisionTreeRegressor","Regression Tree"],["DecisionTreeRegressorParameters","Parameters of Regression Tree"],["DecisionTreeRegressorSearchParameters","DecisionTreeRegressor grid search parameters"],["DecisionTreeRegressorSearchParametersIterator","DecisionTreeRegressor grid search iterator"]]});

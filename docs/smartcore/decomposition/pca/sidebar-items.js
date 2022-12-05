@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["PCA","Principal components analysis algorithm"],["PCAParameters","PCA parameters"],["PCASearchParameters","PCA grid search parameters"],["PCASearchParametersIterator","PCA grid search iterator"]]});

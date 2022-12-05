@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["basic","basic data structures for linear algebra constructs: arrays and views"],["traits","traits associated to algebraic constructs"]]});

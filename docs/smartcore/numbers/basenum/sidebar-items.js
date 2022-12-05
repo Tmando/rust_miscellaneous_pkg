@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Number","Define a `Number` set that acquires traits from `num_traits` to make available a base trait to be used by other usable sets like `FloatNumber`."]]});

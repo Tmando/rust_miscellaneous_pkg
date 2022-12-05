@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Array","Abstract methods for Array"],["Array1","Trait for mutable 1D-array view"],["Array2","Trait for mutable 2D-array view"],["ArrayView1","Trait for 1D-arrays"],["ArrayView2","Trait for 2D-array"],["MutArray","Abstract methods for mutable Array"],["MutArrayView1","Trait for mutable 1D-array"],["MutArrayView2","Trait for mutable 2D-array views"]]});

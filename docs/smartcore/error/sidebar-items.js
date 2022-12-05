@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["FailedError","Type of error"]],"struct":[["Failed","Generic error to be raised when something goes wrong."]]});

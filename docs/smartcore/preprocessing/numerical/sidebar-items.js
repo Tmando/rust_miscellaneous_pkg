@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["StandardScaler","With the `StandardScaler` data can be adjusted so that every column has a mean of zero and a standard deviation of one. This can improve model training for scaling sensitive models like neural network or nearest neighbors based models."],["StandardScalerParameters","Configure Behaviour of `StandardScaler`."]]});

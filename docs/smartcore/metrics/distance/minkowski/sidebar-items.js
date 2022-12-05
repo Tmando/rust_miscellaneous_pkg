@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Minkowski","Defines the Minkowski distance of order `p`"]]});

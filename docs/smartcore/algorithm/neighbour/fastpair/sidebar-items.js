@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FastPair","Inspired by Python implementation: https://github.com/carsonfarmer/fastpair/blob/b8b4d3000ab6f795a878936667eee1b557bf353d/fastpair/base.py MIT License (MIT) Copyright (c) 2016 Carson Farmer"]]});

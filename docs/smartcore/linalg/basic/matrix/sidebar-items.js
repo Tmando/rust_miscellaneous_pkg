@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DenseMatrix","Dense matrix"],["DenseMatrixMutView","Mutable view on dense matrix"],["DenseMatrixView","View on dense matrix"]]});

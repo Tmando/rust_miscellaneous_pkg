@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["add_paragraph_to_document",""],["create_document",""]]});
+initSidebarItems({"fn":[["add_paragraph_to_document",""],["add_table",""],["create_document",""]]});

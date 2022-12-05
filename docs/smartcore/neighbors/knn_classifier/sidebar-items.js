@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["KNNClassifier","K Nearest Neighbors Classifier"],["KNNClassifierParameters","`KNNClassifier` parameters. Use `Default::default()` for default values."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["QR","Results of QR decomposition."]],"trait":[["QRDecomposable","Trait that implements QR decomposition routine for any matrix."]]});

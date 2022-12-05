@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Manhattan","Manhattan distance"]]});

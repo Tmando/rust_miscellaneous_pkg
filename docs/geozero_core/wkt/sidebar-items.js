@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WktWriter","WKT Writer."]]});

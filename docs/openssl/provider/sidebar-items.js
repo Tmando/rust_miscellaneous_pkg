@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Provider",""],["ProviderRef","A reference to a [`Provider`]."]]});

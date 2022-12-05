@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/thomas/.cargo/registry/src/github.com-1ecc6299db9ec823/umya-spreadsheet-0.8.3/src/structs/drawing/preset_geometry.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>preset_geometry.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../umya_spreadsheet/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../umya_spreadsheet/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../umya_spreadsheet/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+</pre><pre class="rust"><code><span class="comment">// a:prstGeom</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::adjust_value_list::AdjustValueList</span>;
+<span class="kw">use</span> <span class="ident">quick_xml::events</span>::{<span class="ident">BytesStart</span>, <span class="ident">Event</span>};
+<span class="kw">use</span> <span class="ident">quick_xml::Reader</span>;
+<span class="kw">use</span> <span class="ident">quick_xml::Writer</span>;
+<span class="kw">use</span> <span class="ident">reader::driver</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::io::Cursor</span>;
+<span class="kw">use</span> <span class="ident">writer::driver</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PresetGeometry</span> {
+    <span class="ident">geometry</span>: <span class="ident">String</span>,
+    <span class="ident">adjust_value_list</span>: <span class="ident">AdjustValueList</span>,
+}
+<span class="kw">impl</span> <span class="ident">PresetGeometry</span> {
+    <span class="comment">// Geometryes</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTBORDERCALLOUT1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentBorderCallout1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTBORDERCALLOUT2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentBorderCallout2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTBORDERCALLOUT3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentBorderCallout3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTCALLOUT1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentCallout1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTCALLOUT2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentCallout2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACCENTCALLOUT3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;accentCallout3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONBACKPREVIOUS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonBackPrevious&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONBEGINNING</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonBeginning&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONBLANK</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonBlank&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONDOCUMENT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonDocument&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONEND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonEnd&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONFORWARDNEXT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonForwardNext&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONHELP</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonHelp&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONHOME</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonHome&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONINFORMATION</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonInformation&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONMOVIE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonMovie&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONRETURN</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonReturn&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ACTIONBUTTONSOUND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;actionButtonSound&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ARC</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;arc&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTCONNECTOR2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentConnector2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTCONNECTOR3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentConnector3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTCONNECTOR4</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentConnector4&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTCONNECTOR5</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentConnector5&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BENTUPARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bentUpArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BEVEL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bevel&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BLOCKARC</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;blockArc&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BORDERCALLOUT1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;borderCallout1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BORDERCALLOUT2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;borderCallout2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BORDERCALLOUT3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;borderCallout3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BRACEPAIR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bracePair&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_BRACKETPAIR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bracketPair&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CALLOUT1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;callout1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CALLOUT2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;callout2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CALLOUT3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;callout3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CAN</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;can&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CHARTPLUS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;chartPlus&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CHARTSTAR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;chartStar&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CHARTX</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;chartX&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CHEVRON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;chevron&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CHORD</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;chord&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CIRCULARARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;circularArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CLOUD</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;cloud&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CLOUDCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;cloudCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CORNER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;corner&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CORNERTABS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;cornerTabs&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CUBE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;cube&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDCONNECTOR2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedConnector2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDCONNECTOR3</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedConnector3&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDCONNECTOR4</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedConnector4&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDCONNECTOR5</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedConnector5&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDDOWNARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedDownArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDLEFTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedLeftArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDRIGHTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedRightArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_CURVEDUPARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;curvedUpArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DECAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;decagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DIAGSTRIPE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;diagStripe&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DIAMOND</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;diamond&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DODECAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;dodecagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DONUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;donut&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DOUBLEWAVE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;doubleWave&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DOWNARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;downArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_DOWNARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;downArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ELLIPSE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ellipse&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ELLIPSERIBBON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ellipseRibbon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ELLIPSERIBBON2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ellipseRibbon2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTALTERNATEPROCESS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartAlternateProcess&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTCOLLATE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartCollate&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTCONNECTOR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartConnector&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTDECISION</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartDecision&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTDELAY</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartDelay&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTDISPLAY</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartDisplay&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTDOCUMENT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartDocument&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTEXTRACT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartExtract&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTINPUTOUTPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartInputOutput&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTINTERNALSTORAGE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartInternalStorage&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMAGNETICDISK</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartMagneticDisk&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMAGNETICDRUM</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartMagneticDrum&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMAGNETICTAPE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartMagneticTape&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMANUALINPUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartManualInput&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMANUALOPERATION</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartManualOperation&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMERGE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartMerge&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTMULTIDOCUMENT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartMultidocument&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTOFFLINESTORAGE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartOfflineStorage&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTOFFPAGECONNECTOR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartOffpageConnector&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTONLINESTORAGE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartOnlineStorage&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTOR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartOr&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTPREDEFINEDPROCESS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartPredefinedProcess&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTPREPARATION</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartPreparation&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTPROCESS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartProcess&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTPUNCHEDCARD</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartPunchedCard&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTPUNCHEDTAPE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartPunchedTape&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTSORT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartSort&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTSUMMINGJUNCTION</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartSummingJunction&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FLOWCHARTTERMINATOR</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;flowChartTerminator&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FOLDERCORNER</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;folderCorner&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FRAME</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;frame&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_FUNNEL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;funnel&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_GEAR6</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;gear6&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_GEAR9</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;gear9&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HALFFRAME</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;halfFrame&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HEART</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;heart&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HEPTAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;heptagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HEXAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;hexagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HOMEPLATE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;homePlate&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_HORIZONTALSCROLL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;horizontalScroll&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_IRREGULARSEAL1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;irregularSeal1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_IRREGULARSEAL2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;irregularSeal2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTBRACE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftBrace&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTBRACKET</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftBracket&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTCIRCULARARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftCircularArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTRIGHTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftRightArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTRIGHTARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftRightArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTRIGHTCIRCULARARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftRightCircularArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTRIGHTRIBBON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftRightRibbon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTRIGHTUPARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftRightUpArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LEFTUPARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;leftUpArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LIGHTNINGBOLT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;lightningBolt&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LINE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;line&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_LINEINV</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;lineInv&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHDIVIDE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathDivide&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHEQUAL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathEqual&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHMINUS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathMinus&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHMULTIPLY</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathMultiply&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHNOTEQUAL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathNotEqual&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MATHPLUS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mathPlus&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_MOON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;moon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_NONISOSCELESTRAPEZOID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;nonIsoscelesTrapezoid&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_NOSMOKING</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;noSmoking&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_NOTCHEDRIGHTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;notchedRightArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_OCTAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;octagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PARALLELOGRAM</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;parallelogram&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PENTAGON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;pentagon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PIE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;pie&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PIEWEDGE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;pieWedge&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PLAQUE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;plaque&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PLAQUETABS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;plaqueTabs&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_PLUS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;plus&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_QUADARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;quadArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_QUADARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;quadArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIBBON</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ribbon&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIBBON2</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ribbon2&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIGHTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rightArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIGHTARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rightArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIGHTBRACE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rightBrace&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RIGHTBRACKET</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rightBracket&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ROUND1RECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;round1Rect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ROUND2DIAGRECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;round2DiagRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ROUND2SAMERECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;round2SameRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_ROUNDRECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;roundRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_RTTRIANGLE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;rtTriangle&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SMILEYFACE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;smileyFace&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SNIP1RECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;snip1Rect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SNIP2DIAGRECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;snip2DiagRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SNIP2SAMERECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;snip2SameRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SNIPROUNDRECT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;snipRoundRect&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SQUARETABS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;squareTabs&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR10</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star10&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR12</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star12&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR16</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star16&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR24</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star24&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR32</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star32&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR4</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star4&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR5</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star5&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR6</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star6&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR7</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star7&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STAR8</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;star8&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STRAIGHTCONNECTOR1</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;straightConnector1&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_STRIPEDRIGHTARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;stripedRightArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SUN</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;sun&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_SWOOSHARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;swooshArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_TEARDROP</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;teardrop&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_TRAPEZOID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;trapezoid&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_TRIANGLE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;triangle&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_UPARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;upArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_UPARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;upArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_UPDOWNARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;upDownArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_UPDOWNARROWCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;upDownArrowCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_UTURNARROW</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;uturnArrow&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_VERTICALSCROLL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;verticalScroll&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_WAVE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;wave&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_WEDGEELLIPSECALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;wedgeEllipseCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_WEDGERECTCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;wedgeRectCallout&quot;</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GEOMETRY_WEDGEROUNDRECTCALLOUT</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;wedgeRoundRectCallout&quot;</span>;
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_geometry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">geometry</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_geometry</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">S</span>) {
+        <span class="self">self</span>.<span class="ident">geometry</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">into</span>();
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_adjust_value_list</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AdjustValueList</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">adjust_value_list</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_adjust_value_list_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">AdjustValueList</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">adjust_value_list</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_adjust_value_list</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">AdjustValueList</span>) {
+        <span class="self">self</span>.<span class="ident">adjust_value_list</span> <span class="op">=</span> <span class="ident">value</span>;
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_attributes</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">std::io::BufRead</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Reader</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>,
+        <span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="ident">BytesStart</span>,
+    ) {
+        <span class="self">self</span>.<span class="ident">set_geometry</span>(<span class="ident">get_attribute</span>(<span class="ident">e</span>, <span class="string">b&quot;prst&quot;</span>).<span class="ident">unwrap</span>());
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+        <span class="kw">loop</span> {
+            <span class="kw">match</span> <span class="ident">reader</span>.<span class="ident">read_event</span>(<span class="kw-2">&amp;mut</span> <span class="ident">buf</span>) {
+                <span class="prelude-val">Ok</span>(<span class="ident">Event::Start</span>(<span class="kw-2">ref</span> <span class="ident">e</span>)) =&gt; <span class="kw">match</span> <span class="ident">e</span>.<span class="ident">name</span>() {
+                    <span class="string">b&quot;a:avLst&quot;</span> =&gt; {
+                        <span class="self">self</span>.<span class="ident">get_adjust_value_list_mut</span>().<span class="ident">set_attributes</span>(<span class="ident">reader</span>, <span class="ident">e</span>);
+                    }
+                    <span class="kw">_</span> =&gt; (),
+                },
+                <span class="prelude-val">Ok</span>(<span class="ident">Event::End</span>(<span class="kw-2">ref</span> <span class="ident">e</span>)) =&gt; <span class="kw">match</span> <span class="ident">e</span>.<span class="ident">name</span>() {
+                    <span class="string">b&quot;a:prstGeom&quot;</span> =&gt; {
+                        <span class="kw">return</span>;
+                    }
+                    <span class="kw">_</span> =&gt; (),
+                },
+                <span class="prelude-val">Ok</span>(<span class="ident">Event::Eof</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Error not find {} end element&quot;</span>, <span class="string">&quot;a:prstGeom&quot;</span>),
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Error at position {}: {:?}&quot;</span>, <span class="ident">reader</span>.<span class="ident">buffer_position</span>(), <span class="ident">e</span>),
+                <span class="kw">_</span> =&gt; (),
+            }
+            <span class="ident">buf</span>.<span class="ident">clear</span>();
+        }
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">write_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Writer</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="comment">// a:prstGeom</span>
+        <span class="ident">write_start_tag</span>(<span class="ident">writer</span>, <span class="string">&quot;a:prstGeom&quot;</span>, <span class="macro">vec!</span>[(<span class="string">&quot;prst&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">geometry</span>)], <span class="bool-val">false</span>);
+
+        <span class="comment">// a:avLst</span>
+        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">adjust_value_list</span>.<span class="ident">write_to</span>(<span class="ident">writer</span>);
+
+        <span class="ident">write_end_tag</span>(<span class="ident">writer</span>, <span class="string">&quot;a:prstGeom&quot;</span>);
+    }
+}
+</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="umya_spreadsheet" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
+</body></html>

@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["bg_solver","This is a generic solver for Ax = b type of equation"],["elastic_net","Elastic Net"],["lasso","Lasso"],["lasso_optimizer","An Interior-Point Method for Large-Scale l1-Regularized Least Squares"],["linear_regression","Linear Regression"],["logistic_regression","Logistic Regression"],["ridge_regression","Ridge Regression"]]});

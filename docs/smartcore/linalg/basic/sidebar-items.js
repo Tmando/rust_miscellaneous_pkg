@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["arrays","`Array`, `ArrayView` and related multidimensional"],["matrix","foundamental implementation for a `DenseMatrix` construct"],["vector","foundamental implementation for 1D constructs"]]});

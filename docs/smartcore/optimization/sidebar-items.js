@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["FunctionOrder",""]],"mod":[["first_order",""],["line_search",""]],"type":[["DF",""],["F",""]]});

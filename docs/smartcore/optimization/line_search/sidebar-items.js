@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Backtracking",""],["LineSearchResult",""]],"trait":[["LineSearchMethod",""]]});

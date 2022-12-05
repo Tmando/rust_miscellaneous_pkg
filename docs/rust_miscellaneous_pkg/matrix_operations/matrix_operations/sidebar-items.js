@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["abs_matrix",""],["add_matrix",""],["dot_product_matrix",""],["max_matrix",""],["min_matrix",""],["mul_matrix",""],["sub_matrix",""],["transpose_matrix",""]]});
+initSidebarItems({"fn":[["abs_matrix","Get the abs of a matrix"],["add_matrix","Add two DMatries"],["dot_product_matrix","Get the dot Product of matrices"],["max_matrix","Get the max num of a matrix"],["min_matrix","Get the min num of a matrix"],["mul_matrix","Multiply two DMatries"],["sub_matrix","Sub two DMatries"],["transpose_matrix","Transpose a matrix"]]});

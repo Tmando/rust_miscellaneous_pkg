@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Geo","Generator for geo-types geometry type"]]});

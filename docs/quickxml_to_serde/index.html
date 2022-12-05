@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="quickxml_to_serde"><meta name="keywords" content="rust, rustlang, rust-lang, quickxml_to_serde"><title>quickxml_to_serde - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../quickxml_to_serde/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../quickxml_to_serde/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Crate quickxml_to_serde</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.5.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li></ul></div></section><div id="sidebar-vars" data-name="quickxml_to_serde" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../quickxml_to_serde/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">quickxml_to_serde</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/quickxml_to_serde/lib.rs.html#1-405">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="quickxml_to_serde"><a href="#quickxml_to_serde">quickxml_to_serde</a></h2>
+<p>Fast and flexible conversion from XML to JSON using <a href="https://github.com/tafia/quick-xml">quick-xml</a>
+and <a href="https://github.com/serde-rs/json">serde</a>. Inspired by <a href="https://github.com/vorot93/node2object">node2object</a>.</p>
+<p>This crate converts XML elements, attributes and text nodes directly into corresponding JSON structures.
+Some common usage scenarios would be converting XML into JSON for loading into No-SQL databases
+or sending it to the front end application.</p>
+<p>Because of the richness and flexibility of XML some conversion behavior is configurable:</p>
+<ul>
+<li>attribute name prefixes</li>
+<li>naming of text nodes</li>
+<li>number format conversion</li>
+</ul>
+<h3 id="usage-example"><a href="#usage-example">Usage example</a></h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">quickxml_to_serde</span>;
+<span class="kw">use</span> <span class="ident">quickxml_to_serde</span>::{<span class="ident">xml_string_to_json</span>, <span class="ident">Config</span>, <span class="ident">NullValue</span>};
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+   <span class="kw">let</span> <span class="ident">xml</span> <span class="op">=</span> <span class="string">r#&quot;&lt;a attr1=&quot;1&quot;&gt;&lt;b&gt;&lt;c attr2=&quot;001&quot;&gt;some text&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;&quot;#</span>;
+   <span class="kw">let</span> <span class="ident">conf</span> <span class="op">=</span> <span class="ident">Config::new_with_defaults</span>();
+   <span class="kw">let</span> <span class="ident">json</span> <span class="op">=</span> <span class="ident">xml_string_to_json</span>(<span class="ident">xml</span>.<span class="ident">to_owned</span>(), <span class="kw-2">&amp;</span><span class="ident">conf</span>);
+   <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">json</span>.<span class="ident">expect</span>(<span class="string">&quot;Malformed XML&quot;</span>).<span class="ident">to_string</span>());
+
+   <span class="kw">let</span> <span class="ident">conf</span> <span class="op">=</span> <span class="ident">Config::new_with_custom_values</span>(<span class="bool-val">true</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;txt&quot;</span>, <span class="ident">NullValue::Null</span>);
+   <span class="kw">let</span> <span class="ident">json</span> <span class="op">=</span> <span class="ident">xml_string_to_json</span>(<span class="ident">xml</span>.<span class="ident">to_owned</span>(), <span class="kw-2">&amp;</span><span class="ident">conf</span>);
+   <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">json</span>.<span class="ident">expect</span>(<span class="string">&quot;Malformed XML&quot;</span>).<span class="ident">to_string</span>());
+}</code></pre></div>
+<ul>
+<li><strong>Output with the default config:</strong> <code>{&quot;a&quot;:{&quot;@attr1&quot;:1,&quot;b&quot;:{&quot;c&quot;:{&quot;#text&quot;:&quot;some text&quot;,&quot;@attr2&quot;:1}}}}</code></li>
+<li><strong>Output with a custom config:</strong> <code>{&quot;a&quot;:{&quot;attr1&quot;:1,&quot;b&quot;:{&quot;c&quot;:{&quot;attr2&quot;:&quot;001&quot;,&quot;txt&quot;:&quot;some text&quot;}}}}</code></li>
+</ul>
+<h3 id="additional-features"><a href="#additional-features">Additional features</a></h3>
+<p>Use <code>quickxml_to_serde = { version = &quot;0.4&quot;, features = [&quot;json_types&quot;] }</code> to enable support for enforcing JSON types
+for some XML nodes using xPath-like notations. Example for enforcing attribute <code>attr2</code> from the snippet above
+as JSON String regardless of its contents:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">quickxml_to_serde</span>::{<span class="ident">Config</span>, <span class="ident">JsonArray</span>, <span class="ident">JsonType</span>};
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;json_types&quot;</span>)]</span>
+<span class="kw">let</span> <span class="ident">conf</span> <span class="op">=</span> <span class="ident">Config::new_with_defaults</span>()
+           .<span class="ident">add_json_type_override</span>(<span class="string">&quot;/a/b/c/@attr2&quot;</span>, <span class="ident">JsonArray::Infer</span>(<span class="ident">JsonType::AlwaysString</span>));</code></pre></div>
+<h3 id="detailed-documentation"><a href="#detailed-documentation">Detailed documentation</a></h3>
+<p>See <a href="https://github.com/AlecTroemel/quickxml_to_serde">README</a> in the source repo for more examples, limitations and detailed behavior description.</p>
+<h3 id="testing-your-xml-files"><a href="#testing-your-xml-files">Testing your XML files</a></h3>
+<p>If you want to see how your XML files are converted into JSON, place them into <code>./test_xml_files</code> directory
+and run <code>cargo test</code>. They will be converted into JSON and saved in the saved directory.</p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Config.html" title="quickxml_to_serde::Config struct">Config</a></div><div class="item-right docblock-short"><p>Tells the converter how to perform certain conversions.
+See docs for individual fields for more info.</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.JsonArray.html" title="quickxml_to_serde::JsonArray enum">JsonArray</a></div><div class="item-right docblock-short"><p>Defines how the values of this Node should be converted into a JSON array with the underlying types.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.JsonType.html" title="quickxml_to_serde::JsonType enum">JsonType</a></div><div class="item-right docblock-short"><p>Defines which data type to apply in JSON format for consistency of output.
+E.g., the range of XML values for the same node type may be <code>1234</code>, <code>001234</code>, <code>AB1234</code>.
+It is impossible to guess with 100% consistency which data type to apply without seeing
+the entire range of values. Use this enum to tell the converter which data type should
+be applied.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.NullValue.html" title="quickxml_to_serde::NullValue enum">NullValue</a></div><div class="item-right docblock-short"><p>Defines how empty elements like <code>&lt;x /&gt;</code> should be handled.
+<code>Ignore</code> -&gt; exclude from JSON, <code>Null</code> -&gt; <code>&quot;x&quot;:null</code>, EmptyObject -&gt; <code>&quot;x&quot;:{}</code>.
+<code>EmptyObject</code> is the default option and is how it was handled prior to v.0.4
+Using <code>Ignore</code> on an XML document with an empty root element falls back to <code>Null</code> option.
+E.g. both <code>&lt;a&gt;&lt;x/&gt;&lt;/a&gt;</code> and <code>&lt;a/&gt;</code> are converted into <code>{&quot;a&quot;:null}</code>.</p>
+</div></div></div><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.xml_str_to_json.html" title="quickxml_to_serde::xml_str_to_json fn">xml_str_to_json</a></div><div class="item-right docblock-short"><p>Converts the given XML string into <code>serde::Value</code> using settings from <code>Config</code> struct.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.xml_string_to_json.html" title="quickxml_to_serde::xml_string_to_json fn">xml_string_to_json</a></div><div class="item-right docblock-short"><p>Converts the given XML string into <code>serde::Value</code> using settings from <code>Config</code> struct.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="quickxml_to_serde" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.1 (e092d0b6b 2022-07-16)" ></div>
+</body></html>
