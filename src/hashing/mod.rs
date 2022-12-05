@@ -1,7 +1,10 @@
+//! This a module with a collection of different hashing methods
+//! This is a wrapper for [tiny_keccak](https://docs.rs/tiny-keccak/latest/tiny_keccak/)
 pub mod hashing {
     use tiny_keccak::Hasher;
     use tiny_keccak::IntoXof;
     use tiny_keccak::Xof;
+    /// This is a wrapper for [cs_shake_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.CShake.html)
     pub fn cs_shake_v128(name: &[u8], custom_string: &[u8],input:&[u8])->[u8;32]{
         let mut output = [0; 32];
         let mut cshake_v128 = tiny_keccak::CShake::v128(name, custom_string);
@@ -9,6 +12,7 @@ pub mod hashing {
         cshake_v128.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [cs_shake_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.CShake.html)
     pub fn cs_shake_v256(name: &[u8], custom_string: &[u8],input:&[u8])->[u8;32]{
         let mut output = [0; 32];
         let mut cshake_v256 = tiny_keccak::CShake::v256(name, custom_string);
@@ -16,6 +20,7 @@ pub mod hashing {
         cshake_v256.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [kangaroo_twelve](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.KangarooTwelve.html)
     pub fn kangaroo_twelve(custom_string: &[u8],input:&[u8])->[u8;32]{
         let mut output = [0; 32];
         let mut kangaroo_twelve_hasher = tiny_keccak::KangarooTwelve::new(custom_string);
@@ -23,6 +28,7 @@ pub mod hashing {
         kangaroo_twelve_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [kangaroo_twelve_xof](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.KangarooTwelveXof.html)
     pub fn kangaroo_twelve_xof(custom_string: &[u8],input: &[u8])->[u8; 64]{
         let mut output = [0; 64];
         let mut kangaroo_twelve_hasher = tiny_keccak::KangarooTwelve::new(custom_string);
@@ -32,6 +38,7 @@ pub mod hashing {
         kangaroo_twelve_hasher_xof.squeeze(&mut output[32..]);
         return output;
     }
+    /// This is a wrapper for [keccak_v224](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Keccak.html)
     pub fn keccak_v224(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut keccak_v224_hasher = tiny_keccak::Keccak::v224();
@@ -40,6 +47,7 @@ pub mod hashing {
         return output
 
     }
+    /// This is a wrapper for [keccak_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Keccak.html)
     pub fn keccak_v256(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut keccak_v256_hasher = tiny_keccak::Keccak::v256();
@@ -47,6 +55,7 @@ pub mod hashing {
         keccak_v256_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [keccak_v384](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Keccak.html)
     pub fn keccak_v384(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut keccak_v384_hasher = tiny_keccak::Keccak::v384();
@@ -54,6 +63,7 @@ pub mod hashing {
         keccak_v384_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [keccak_v512](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Keccak.html)
     pub fn keccak_v512(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut keccak_v512_hasher = tiny_keccak::Keccak::v512();
@@ -61,6 +71,7 @@ pub mod hashing {
         keccak_v512_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [kmac_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Kmac.html)
     pub fn kmac_v128(key: &[u8], custom_string: &[u8],input:&[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut kmac_v128_hasher = tiny_keccak::Kmac::v128(key, custom_string);
@@ -68,6 +79,7 @@ pub mod hashing {
         kmac_v128_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [kmac_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Kmac.html)
     pub fn kmac_v256(key: &[u8], custom_string: &[u8],input:&[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut kmac_v256_hasher = tiny_keccak::Kmac::v256(key, custom_string);
@@ -75,6 +87,7 @@ pub mod hashing {
         kmac_v256_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [kmac_v256_xof](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.KmacXof.html)
     pub fn kmac_v256_xof(key: &[u8],input:&[u8], custom_string: &[u8])->[u8; 64]{
         let mut output = [0u8; 64];
         let mut kmac_v256_hasher = tiny_keccak::Kmac::v256(key, custom_string);
@@ -84,6 +97,7 @@ pub mod hashing {
         kmac_v256_hasher_xof.squeeze(&mut output[32..]);
         return output;
     }
+    /// This is a wrapper for [kmac_v128_xof](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.KmacXof.html)
     pub fn kmac_v128_xof(key: &[u8],input: &[u8], custom_string: &[u8])->[u8;64]{
         let mut output = [0u8; 64];
         let mut kmac_v128_hasher = tiny_keccak::Kmac::v128(key, custom_string);
@@ -93,6 +107,7 @@ pub mod hashing {
         kmac_v128_hasher_xof.squeeze(&mut output[32..]);
         return output;
     }
+    /// This is a wrapper for [parallel_hash_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.ParallelHash.html)
     pub fn parallel_hash_v128(custom_string: &[u8],input: &[u8], block_size: usize)->[u8; 32]{
         let mut output = [0u8; 32];
         let mut parallel_hash_v128_hasher = tiny_keccak::ParallelHash::v128(custom_string, block_size);
@@ -100,6 +115,7 @@ pub mod hashing {
         parallel_hash_v128_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [parallel_hash_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.ParallelHash.html)
     pub fn parallel_hash_v256(custom_string: &[u8],input: &[u8], block_size: usize)->[u8; 32]{
         let mut output = [0u8; 32];
         let mut parallel_hash_v256_hasher = tiny_keccak::ParallelHash::v256(custom_string, block_size);
@@ -107,7 +123,8 @@ pub mod hashing {
         parallel_hash_v256_hasher.finalize(&mut output);
         return output;
     }
-
+    
+    /// This is a wrapper for [parallel_hash_xof_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.ParallelHashXof.html)
     pub fn parallel_hash_xof_v128(custom_string: &[u8],input:&[u8], block_size: usize)->[u8; 64]{
         let mut output = [0u8; 64];
         let mut parallel_hash_v128_hasher = tiny_keccak::ParallelHash::v128(custom_string, block_size);
@@ -117,7 +134,7 @@ pub mod hashing {
         xof.squeeze(&mut output[32..]);
         return output;
     }
-
+    /// This is a wrapper for [parallel_hash_xof_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.ParallelHashXof.html)
     pub fn parallel_hash_xof_v256(custom_string: &[u8], input:&[u8], block_size: usize)->[u8; 64]{
         let mut output = [0u8; 64];
         let mut parallel_hash_v256_hasher = tiny_keccak::ParallelHash::v256(custom_string, block_size);
@@ -127,6 +144,7 @@ pub mod hashing {
         xof.squeeze(&mut output[32..]);
         return output;
     }
+    /// This is a wrapper for [sha3_v224](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Sha3.html)
     pub fn sha3_v224(input: &[u8])->[u8;32]{
         let mut output = [0u8; 32];
         let mut sha_v224_hasher = tiny_keccak::Sha3::v224();
@@ -134,7 +152,7 @@ pub mod hashing {
         sha_v224_hasher.finalize(&mut output);
         return output;
     }
-
+    /// This is a wrapper for [sha3_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Sha3.html)
     pub fn sha3_v256(input: &[u8])->[u8;32]{
         let mut output = [0u8; 32];
         let mut sha_v256_hasher = tiny_keccak::Sha3::v256();
@@ -142,7 +160,7 @@ pub mod hashing {
         sha_v256_hasher.finalize(&mut output);
         return output;
     }
-
+    /// This is a wrapper for [sha3_v384](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Sha3.html)
     pub fn sha3_v384(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut sha_v384_hasher = tiny_keccak::Sha3::v384();
@@ -150,7 +168,7 @@ pub mod hashing {
         sha_v384_hasher.finalize(&mut output);
         return output;
     }
-
+    /// This is a wrapper for [sha3_v512](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Sha3.html)
     pub fn sha3_v512(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut sha_v512_hasher = tiny_keccak::Sha3::v512();
@@ -158,6 +176,7 @@ pub mod hashing {
         sha_v512_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [shake_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Shake.html)
     pub fn shake_v128(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut sha_v128_hasher = tiny_keccak::Shake::v128();
@@ -165,6 +184,7 @@ pub mod hashing {
         sha_v128_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [shake_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.Shake.html)
     pub fn shake_v256(input: &[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut sha_v256_hasher = tiny_keccak::Shake::v256();
@@ -172,7 +192,7 @@ pub mod hashing {
         sha_v256_hasher.finalize(&mut output);
         return output;
     }
-
+    /// This is a wrapper for [tuple_hash_v128](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.TupleHash.html)
     pub fn tuple_hash_v128(custom_string: &[u8],input:&[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut tuple_hash_v128_hasher = tiny_keccak::TupleHash::v128(custom_string);
@@ -180,7 +200,7 @@ pub mod hashing {
         tuple_hash_v128_hasher.finalize(&mut output);
         return output;
     }
-
+    /// This is a wrapper for [tuple_hash_v256](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.TupleHash.html)
     pub fn tuple_hash_v256(custom_string: &[u8],input:&[u8])->[u8; 32]{
         let mut output = [0u8; 32];
         let mut tuple_hash_v256_hasher = tiny_keccak::TupleHash::v256(custom_string);
@@ -188,6 +208,7 @@ pub mod hashing {
         tuple_hash_v256_hasher.finalize(&mut output);
         return output;
     }
+    /// This is a wrapper for [tuple_hash_v128_xof](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.TupleHashXof.html)
     pub fn tuple_hash_v128_xof(custom_string: &[u8],input:&[u8])->[u8; 64]{
         let mut output = [0u8; 64];
         let mut tuple_hash_v128_hasher = tiny_keccak::TupleHash::v128(custom_string);
@@ -197,6 +218,7 @@ pub mod hashing {
         tuple_hash_v128_hasher_xof.squeeze(&mut output[32..]);
         return output;
     }
+    /// This is a wrapper for [tuple_hash_v256_xof](https://docs.rs/tiny-keccak/latest/tiny_keccak/struct.TupleHashXof.html)
     pub fn tuple_hash_v256_xof(custom_string: &[u8],input:&[u8])->[u8; 64]{
         let mut output = [0u8; 64];
         let mut tuple_hash_v256_hasher = tiny_keccak::TupleHash::v256(custom_string);
