@@ -1,3 +1,4 @@
+//! This is a module which allows you to get/insert/delete/update data from mysql/sqlite/postgres database
 pub mod sql_operation {
     use futures::TryStreamExt;
     use serde_json::{ Value, to_value };
