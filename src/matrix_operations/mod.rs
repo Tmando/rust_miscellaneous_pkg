@@ -1,39 +1,46 @@
 pub mod matrix_operations {
-    // Multiply two DMatries
+    /// Multiply two DMatries
     pub fn mul_matrix(
         mat_one: nalgebra::DMatrix<f64>,
         mat_two: nalgebra::DMatrix<f64>
     ) -> nalgebra::DMatrix<f64> {
         return mat_one * mat_two;
     }
+    /// Add two DMatries
     pub fn add_matrix(
         mat_one: nalgebra::DMatrix<f64>,
         mat_two: nalgebra::DMatrix<f64>
     ) -> nalgebra::DMatrix<f64> {
         return mat_one + mat_two;
     }
+    /// Sub two DMatries
     pub fn sub_matrix(
         mat_one: nalgebra::DMatrix<f64>,
         mat_two: nalgebra::DMatrix<f64>
     ) -> nalgebra::DMatrix<f64> {
         return mat_one - mat_two;
     }
+    /// Get the dot Product of matrices
     pub fn dot_product_matrix(
         mat_one: nalgebra::DMatrix<f64>,
         mat_two: nalgebra::DMatrix<f64>
     ) -> f64 {
         return mat_one.dot(&mat_two);
     }
+    /// Get the abs of a matrix
     pub fn abs_matrix(mat_one: nalgebra::DMatrix<f64>) -> nalgebra::DMatrix<f64> {
         return mat_one.abs();
     }
+    /// Get the max num of a matrix
     pub fn max_matrix(mat_one: nalgebra::DMatrix<f64>) -> f64 {
         return mat_one.max();
     }
-
+    /// Get the min num of a matrix
     pub fn min_matrix(mat_one: nalgebra::DMatrix<f64>) -> f64 {
         return mat_one.min();
     }
+
+    /// Transpose a matrix
     pub fn transpose_matrix(mat_one: nalgebra::DMatrix<f64>) -> nalgebra::DMatrix<f64> {
         return mat_one.transpose();
     }
