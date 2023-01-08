@@ -72,7 +72,7 @@ pub mod custom_request {
             req = req.query(&request_query_params.unwrap());
         }
         if !request_form.is_none() {
-            req = req.query(&request_form.unwrap());
+            req = req.form(&request_form.unwrap());
         }
         if !request_body.is_none() {
             req = req.body(request_body.unwrap());
