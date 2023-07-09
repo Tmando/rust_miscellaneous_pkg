@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["kmeans",""],["pca_decomposition",""],["random_forest_classifier",""],["svd_decomposition",""]]});
+window.SIDEBAR_ITEMS = {"fn":["kmeans","pca_decomposition","random_forest_classifier","svd_decomposition"]};

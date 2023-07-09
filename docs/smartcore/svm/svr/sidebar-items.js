@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SVR","Epsilon-Support Vector Regression"],["SVRParameters","SVR Parameters"]]});

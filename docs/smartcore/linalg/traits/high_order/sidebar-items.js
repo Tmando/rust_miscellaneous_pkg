@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["HighOrderOperations","High order matrix operations."]]});

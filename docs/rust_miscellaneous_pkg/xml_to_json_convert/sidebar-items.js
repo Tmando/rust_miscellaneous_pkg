@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["xml_to_json_convert",""]]});
+window.SIDEBAR_ITEMS = {"mod":["xml_to_json_convert"]};

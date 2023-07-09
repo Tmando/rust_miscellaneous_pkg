@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["random_forest_classifier","Random forest classifier"],["random_forest_regressor","Random forest regressor"]]});

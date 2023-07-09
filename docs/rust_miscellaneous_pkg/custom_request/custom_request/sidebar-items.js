@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["create_request","This function builds a http request and returns the request"]],"struct":[["CustomResponse",""]]});
+window.SIDEBAR_ITEMS = {"fn":["create_request"],"struct":["CustomResponse"]};

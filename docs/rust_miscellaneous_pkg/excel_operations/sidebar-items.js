@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["excel_operations",""]]});
+window.SIDEBAR_ITEMS = {"mod":["excel_operations"]};

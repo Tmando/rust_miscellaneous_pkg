@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["bio_algorithms",""]]});
+window.SIDEBAR_ITEMS = {"mod":["bio_algorithms"]};

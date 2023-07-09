@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["add_num",""],["div_num",""],["mod_num",""],["mul_num",""],["sub_num",""]]});
+window.SIDEBAR_ITEMS = {"fn":["add_num","div_num","mod_num","mul_num","sub_num"]};

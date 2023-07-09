@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Date","Date in the proleptic Gregorian calendar."],["OffsetDateTime","A [`PrimitiveDateTime`] with a [`UtcOffset`]."],["PrimitiveDateTime","Combined date and time."],["Time","The clock time within a given date. Nanosecond precision."],["UtcOffset","An offset from UTC."]]});

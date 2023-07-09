@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["hashing",""]]});
+window.SIDEBAR_ITEMS = {"mod":["hashing"]};

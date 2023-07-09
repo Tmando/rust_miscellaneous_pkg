@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Cholesky","Results of Cholesky decomposition."]],"trait":[["CholeskyDecomposable","Trait that implements Cholesky decomposition routine for any matrix."]]});

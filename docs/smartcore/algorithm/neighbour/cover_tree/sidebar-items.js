@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["CoverTree","Implements Cover Tree algorithm"]]});

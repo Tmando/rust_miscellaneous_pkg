@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["get_sha1","return a sha1 hash of a string"],["get_sha224","return a sha224 hash of a string"],["get_sha256","return a sha256 hash of a string"],["get_sha384","return a sha384 hash of a string"],["get_sha512","return a sha512 hash of a string"]]});
+window.SIDEBAR_ITEMS = {"fn":["get_sha1","get_sha224","get_sha256","get_sha384","get_sha512"]};

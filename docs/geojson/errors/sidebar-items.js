@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Error","Errors which can occur when encoding, decoding, and converting GeoJSON"]]});

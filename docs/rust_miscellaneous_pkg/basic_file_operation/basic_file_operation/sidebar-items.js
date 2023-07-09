@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["read_file_to_str_vec","Read a file to String Vec"],["read_file_to_string","Read file and put it into a string"],["write_file_from_char_vec","Write the content of a string vector to file"]]});
+window.SIDEBAR_ITEMS = {"fn":["read_file_to_str_vec","read_file_to_string","write_file_from_char_vec"]};

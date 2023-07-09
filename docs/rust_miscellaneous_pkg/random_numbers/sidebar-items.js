@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["random_numbers",""]]});
+window.SIDEBAR_ITEMS = {"mod":["random_numbers"]};

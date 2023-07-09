@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["HCVScore","Homogeneity, completeness and V-Measure scores."]]});

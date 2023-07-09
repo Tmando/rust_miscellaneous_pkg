@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["match_regex_string",""],["replace_regex_string",""],["split_regex_string",""]]});
+window.SIDEBAR_ITEMS = {"fn":["match_regex_string","replace_regex_string","split_regex_string"]};

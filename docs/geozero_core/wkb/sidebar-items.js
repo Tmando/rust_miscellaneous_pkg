@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["WKBGeometryType","WKB Types according to OGC 06-103r4 (https://www.ogc.org/standards/sfa)"],["WkbDialect","WKB dialect."]],"fn":[["process_ewkb_geom","Process EWKB geometry."],["process_gpkg_geom","Process GPKG geometry."]],"struct":[["WkbWriter","WKB writer."]]});

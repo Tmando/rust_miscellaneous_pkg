@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["R2","Coefficient of Determination (R2)"]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["gradient_descent",""],["lbfgs",""]],"struct":[["OptimizerResult",""]],"trait":[["FirstOrderOptimizer",""]]});

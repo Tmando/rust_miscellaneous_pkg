@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["column_index_from_string",""],["coordinate_from_index",""],["coordinate_from_index_with_lock",""],["coordinate_from_string",""],["index_from_coordinate",""],["index_from_coordinate_simple",""],["string_from_column_index",""]]});

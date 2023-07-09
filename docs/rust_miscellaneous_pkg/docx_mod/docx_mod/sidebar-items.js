@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["add_paragraph_to_document",""],["add_table",""],["create_document",""]]});
+window.SIDEBAR_ITEMS = {"fn":["add_paragraph_to_document","add_table","create_document"]};

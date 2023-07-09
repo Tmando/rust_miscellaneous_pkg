@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["matrix_operations",""]]});
+window.SIDEBAR_ITEMS = {"mod":["matrix_operations"]};

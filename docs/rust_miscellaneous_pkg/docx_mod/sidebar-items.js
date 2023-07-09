@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["docx_mod",""]]});
+window.SIDEBAR_ITEMS = {"mod":["docx_mod"]};

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["basic_file_operation",""]]});
+window.SIDEBAR_ITEMS = {"mod":["basic_file_operation"]};

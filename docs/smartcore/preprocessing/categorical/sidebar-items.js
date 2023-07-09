@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["OneHotEncoder","Encode Categorical variavbles of data matrix to one-hot"],["OneHotEncoderParams","OneHotEncoder Parameters"]]});

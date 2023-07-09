@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["sql_operation",""]]});
+window.SIDEBAR_ITEMS = {"mod":["sql_operation"]};

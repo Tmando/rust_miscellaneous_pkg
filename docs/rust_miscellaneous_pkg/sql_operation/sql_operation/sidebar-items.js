@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["query_db",""]]});
+window.SIDEBAR_ITEMS = {"fn":["query_db"]};

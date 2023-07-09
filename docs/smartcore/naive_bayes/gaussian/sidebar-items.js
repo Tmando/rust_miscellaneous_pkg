@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["GaussianNB","GaussianNB implements the naive Bayes algorithm for data that follows the Gaussian distribution."],["GaussianNBParameters","`GaussianNB` parameters. Use `Default::default()` for default values."],["GaussianNBSearchParameters","GaussianNB grid search parameters"],["GaussianNBSearchParametersIterator","GaussianNB grid search iterator"]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SVD","SVD"],["SVDParameters","SVD parameters"],["SVDSearchParameters","SVD grid search parameters"],["SVDSearchParametersIterator","SVD grid search iterator"]]});

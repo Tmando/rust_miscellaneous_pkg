@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regex_operations",""]]});
+window.SIDEBAR_ITEMS = {"mod":["regex_operations"]};

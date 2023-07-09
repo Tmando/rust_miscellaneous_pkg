@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SVD","Results of SVD decomposition"]],"trait":[["SVDDecomposable","Trait that implements SVD decomposition routine for any matrix."]]});

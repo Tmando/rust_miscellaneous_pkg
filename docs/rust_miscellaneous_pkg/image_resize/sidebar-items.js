@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["image_resizer",""]]});
+window.SIDEBAR_ITEMS = {"mod":["image_resizer"]};

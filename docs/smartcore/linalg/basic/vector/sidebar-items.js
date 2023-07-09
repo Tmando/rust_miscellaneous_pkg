@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["VecMutView","Provide mutable window on array"],["VecView","Provide window on array"]]});

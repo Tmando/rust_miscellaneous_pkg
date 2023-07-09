@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["get_random_number_range",""]]});
+window.SIDEBAR_ITEMS = {"fn":["get_random_number_range"]};

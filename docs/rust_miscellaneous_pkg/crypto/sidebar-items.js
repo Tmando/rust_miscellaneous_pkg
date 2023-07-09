@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["crypto",""]]});
+window.SIDEBAR_ITEMS = {"mod":["crypto"]};

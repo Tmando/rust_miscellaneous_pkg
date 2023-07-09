@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["new_file","create new spreadsheet file."],["new_file_empty_worksheet","create new spreadsheet file. not include worksheet. At least one additional worksheet must be added before the correct file can be generated."]],"mod":[["helper",""],["reader","file reader library."],["structs","store structs."],["writer","file writer library."]]});

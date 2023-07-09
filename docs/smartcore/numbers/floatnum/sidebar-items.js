@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["FloatNumber","Defines float number"]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["custom_request",""]]});
+window.SIDEBAR_ITEMS = {"mod":["custom_request"]};

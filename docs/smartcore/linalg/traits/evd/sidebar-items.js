@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["EVD","Results of eigen decomposition"]],"trait":[["EVDDecomposable","Trait that implements EVD decomposition routine for any matrix."]]});

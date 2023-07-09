@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["categorical","Transform a data matrix by replacing all categorical variables with their one-hot vector equivalents"],["numerical","Preprocess numerical matrices."],["series_encoder","Encode a series (column, array) of categorical variables as one-hot vectors"]]});

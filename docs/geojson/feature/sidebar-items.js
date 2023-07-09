@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Id","Feature identifier"]]});

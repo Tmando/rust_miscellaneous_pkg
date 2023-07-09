@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Euclidian","Euclidean distance is a measure of the true straight line distance between two points in Euclidean n-space."]]});

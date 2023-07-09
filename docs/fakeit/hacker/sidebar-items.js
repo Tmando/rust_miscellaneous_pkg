@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["abbreviation",""],["adjective",""],["ingverb",""],["noun",""],["phrase",""],["verb",""]]});

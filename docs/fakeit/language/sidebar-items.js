@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["abbreviation",""],["programming",""],["random",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["basic_arithmetic",""]]});
+window.SIDEBAR_ITEMS = {"mod":["basic_arithmetic"]};

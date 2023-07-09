@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["basenum","Base `Number` from `std` and `num-traits`"],["floatnum","implementation for `FloatNumber`"],["realnum","implementation for `RealNumber`"]]});

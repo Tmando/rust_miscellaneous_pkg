@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["faker",""]]});
+window.SIDEBAR_ITEMS = {"mod":["faker"]};

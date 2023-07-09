@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["IpNetwork","Represents a generic network range. This type can have two variants: the v4 and the v6 case."]],"struct":[["Ipv4Network","Represents a network range where the IP addresses are of v4"],["Ipv6Network","Represents a network range where the IP addresses are of v6"]]});
