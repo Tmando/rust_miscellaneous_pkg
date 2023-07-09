@@ -1,4 +1,6 @@
 //! Module to create HTTP basic Requests
+
+#[cfg(feature = "custom_request")]
 pub mod custom_request {
     use bytes::Bytes;
     use reqwest::Client;
@@ -103,6 +105,7 @@ pub mod custom_request {
     }
 }
 
+#[cfg(feature = "custom_request")]
 #[cfg(test)]
 mod tests {
     use std::collections::HashMap;

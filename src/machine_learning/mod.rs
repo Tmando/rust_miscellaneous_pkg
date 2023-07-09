@@ -1,3 +1,4 @@
+#[cfg(feature = "machine_learning")]
 pub mod machine_learning{
     use smartcore::linalg::basic::matrix::DenseMatrix;
     use smartcore::cluster::kmeans::*;
@@ -41,6 +42,7 @@ pub mod machine_learning{
         return *res_vec;
     }
 }
+#[cfg(feature = "machine_learning")]
 #[cfg(test)]
 mod test {
     #[test]

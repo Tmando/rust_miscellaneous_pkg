@@ -1,4 +1,5 @@
 //! Collection of crypto algorithms
+#[cfg(feature = "crypto")]
 pub mod crypto {
     use bytes::Bytes;
 
@@ -32,6 +33,7 @@ pub mod crypto {
     }
 }
 
+#[cfg(feature = "crypto")]
 mod test {
     #[test]
     fn test_get_sha224() {

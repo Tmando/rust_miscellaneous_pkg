@@ -1,3 +1,5 @@
+
+#[cfg(feature = "docx_mod")]
 pub mod docx_mod {
     use std::ffi::OsStr;
 
@@ -73,6 +75,7 @@ pub mod docx_mod {
     }
 }
 
+#[cfg(feature = "docx_mod")]
 #[cfg(test)]
 mod tests {
     #[test]

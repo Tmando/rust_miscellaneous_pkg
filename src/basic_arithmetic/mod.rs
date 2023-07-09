@@ -1,4 +1,5 @@
 //! Collection of basic arithmetic functions
+#[cfg(feature = "basic_arithmetic")]
 pub mod basic_arithmetic {
     // Add two numbers
     pub fn add_num(a: f64, b: f64) -> f64 {
@@ -28,7 +29,7 @@ pub mod basic_arithmetic {
         return a % b;
     }
 }
-
+#[cfg(feature = "basic_arithmetic")]
 #[cfg(test)]
 mod test {
     #[test]

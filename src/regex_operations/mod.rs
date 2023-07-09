@@ -1,4 +1,6 @@
 //! Module for some regex operation
+
+#[cfg(feature = "regex_operations")]
 pub mod regex_operations {
     // This function checks if an input string matches with an regex input
     pub fn match_regex_string(regex_input: String, seach_string: String) -> bool {
@@ -35,6 +37,7 @@ pub mod regex_operations {
         return output;
     }
 }
+#[cfg(feature = "regex_operations")]
 #[cfg(test)]
 mod tests {
     #[test]

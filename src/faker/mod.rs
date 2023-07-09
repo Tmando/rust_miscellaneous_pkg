@@ -1,4 +1,5 @@
 //! Collection to create different fake data
+#[cfg(feature = "faker")]
 pub mod faker {
     pub fn get_city() -> String {
         return fakeit::address::city();

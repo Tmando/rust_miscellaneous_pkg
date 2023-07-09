@@ -1,5 +1,7 @@
 //! This is a module which allows you to resize images.
 //! With this module it is possible to resize images with different algorithms.
+
+#[cfg(feature = "image_resizer")]
 pub mod image_resizer {
     use std::path::Path;
 
@@ -120,6 +122,7 @@ pub mod image_resizer {
     }
 }
 
+#[cfg(feature = "image_resizer")]
 #[cfg(test)]
 mod test {
     #[test]

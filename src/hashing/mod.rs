@@ -1,5 +1,7 @@
 //! This a module with a collection of different hashing methods
 //! This is a wrapper for [tiny_keccak](https://docs.rs/tiny-keccak/latest/tiny_keccak/)
+
+#[cfg(feature = "hashing")]
 pub mod hashing {
     use tiny_keccak::Hasher;
     use tiny_keccak::IntoXof;
@@ -229,6 +231,8 @@ pub mod hashing {
         return output;
     }
 }
+
+#[cfg(feature = "hashing")]
 mod test {
     #[test]
     fn test_cs_shake_v256(){

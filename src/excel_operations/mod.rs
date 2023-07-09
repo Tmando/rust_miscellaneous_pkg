@@ -1,4 +1,5 @@
 //! This module allows to write a json object to an excel sheet and read out the content of excel sheet to json a json structure
+#[cfg(feature = "excel_operations")]
 pub mod excel_operations {
     use rayon::prelude::*;
     use serde_json::json;
@@ -61,8 +62,8 @@ pub mod excel_operations {
     fn write_header_line(header_vec: &Vec<String>, mut worksheet: Worksheet) -> Worksheet {
         for i in 0..header_vec.len() {
             worksheet
-                .get_cell_value_by_column_and_row_mut(&(i as u32 + 1), &(0 as u32 + 1))
-                .set_value_from_string(header_vec.get(i).unwrap());
+                .get_cell_value_mut(((i as u32 + 1), (0 as u32 + 1)))
+                .set_value_string(header_vec.get(i).unwrap());
         }
         return worksheet;
     }
@@ -107,43 +108,28 @@ pub mod excel_operations {
                     let cur_val = obj.get(&header_vec[i]).unwrap();
                     match cur_val.clone() {
                         e @ Value::Number(_) => worksheet
-                            .get_cell_value_by_column_and_row_mut(
-                                &(i as u32 + 1),
-                                &(row_idx as u32 + 1),
-                            )
-                            .set_value_from_numberic(e.as_f64().unwrap()),
+                            .get_cell_value_mut(((i as u32 + 1),(row_idx as u32 + 1)))
+                            .set_value_number(e.as_f64().unwrap()),
                         e @ Value::Bool(_) => worksheet
-                            .get_cell_value_by_column_and_row_mut(
-                                &(i as u32 + 1),
-                                &(row_idx as u32 + 1),
-                            )
-                            .set_value_from_bool(e.as_bool().unwrap()),
+                            .get_cell_value_mut(((i as u32 + 1),(row_idx as u32 + 1)))
+                            .set_value_bool(e.as_bool().unwrap()),
                         Value::String(s) => worksheet
-                            .get_cell_value_by_column_and_row_mut(
-                                &(i as u32 + 1),
-                                &(row_idx as u32 + 1),
-                            )
-                            .set_value_from_string(s),
+                            .get_cell_value_mut(((i as u32 + 1),(row_idx as u32 + 1)))
+                            .set_value_string(s),
                         _ => {
                             println!(
                                 r#"Warning : Can not convert field : "{}'s value to String, It will be empty string."#,
                                 cur_val
                             );
                             worksheet
-                                .get_cell_value_by_column_and_row_mut(
-                                    &(i as u32 + 1),
-                                    &(row_idx as u32 + 1),
-                                )
-                                .set_value_from_string("")
+                                .get_cell_value_mut(((i as u32 + 1),(row_idx as u32 + 1)))
+                                .set_value_string("")
                         }
                     };
                 } else {
                     worksheet
-                        .get_cell_value_by_column_and_row_mut(
-                            &(i as u32 + 1),
-                            &(row_idx as u32 + 1),
-                        )
-                        .set_value_from_string("");
+                        .get_cell_value_mut(((i as u32 + 1),(row_idx as u32 + 1)))
+                        .set_value_string("");
                 }
             }
         }
@@ -341,6 +327,8 @@ pub mod excel_operations {
     }
 }
 
+#[cfg(feature = "excel_operations")]
+#[cfg(test)]
 mod test {
 
     #[test]

@@ -1,4 +1,6 @@
 //! Module to create random numbers
+
+#[cfg(feature = "random_numbers")]
 pub mod random_numbers {
     use rand::Rng;
     pub fn get_random_number_range(min_num: f64, max_num: f64) -> f64 {
@@ -6,6 +8,7 @@ pub mod random_numbers {
     }
 }
 
+#[cfg(feature = "random_numbers")]
 #[cfg(test)]
 mod test {
     #[test]

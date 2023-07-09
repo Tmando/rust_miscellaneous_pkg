@@ -1,4 +1,5 @@
 //! This is a collection of bio algorithms
+#[cfg(feature = "bio_algorithms")]
 pub mod bio_algorithms {
     /// This function calculates the hemming distance of two strings
     ///
@@ -57,6 +58,7 @@ pub mod bio_algorithms {
         return kmp.find_all(text.as_bytes()).collect();
     }
 }
+#[cfg(feature = "bio_algorithms")]
 #[cfg(test)]
 mod test {
     #[test]

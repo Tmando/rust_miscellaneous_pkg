@@ -1,4 +1,5 @@
 //! Collection of basic file operations
+#[cfg(feature = "basic_file_operation")]
 pub mod basic_file_operation {
     use std::fs;
     use std::io::Write;
@@ -53,6 +54,7 @@ pub mod basic_file_operation {
     }
 }
 
+#[cfg(feature = "basic_file_operation")]
 #[cfg(test)]
 mod test {
     #[test]

@@ -13,7 +13,6 @@ pub mod faker;
 pub mod xml_to_json_convert;
 pub mod regex_operations;
 pub mod docx_mod;
-pub mod postgres_operation;
 pub mod machine_learning;
 pub mod hashing;
 pub mod sql_operation;

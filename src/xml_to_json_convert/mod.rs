@@ -1,4 +1,6 @@
 //! Module to convert json from xml
+
+#[cfg(feature = "xml_to_json_convert")]
 pub mod xml_to_json_convert {
     use quickxml_to_serde::*;
     use serde_json::Value;
@@ -17,6 +19,8 @@ pub mod xml_to_json_convert {
         }
     }
 }
+
+#[cfg(feature = "xml_to_json_convert")]
 #[cfg(test)]
 mod test {
     #[test]

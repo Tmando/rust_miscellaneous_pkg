@@ -1,3 +1,4 @@
+#[cfg(feature = "matrix_operations")]
 pub mod matrix_operations {
     /// Multiply two DMatries
     pub fn mul_matrix(
@@ -46,6 +47,7 @@ pub mod matrix_operations {
     }
 }
 
+#[cfg(feature = "matrix_operations")]
 #[cfg(test)]
 mod test {
     #[test]
