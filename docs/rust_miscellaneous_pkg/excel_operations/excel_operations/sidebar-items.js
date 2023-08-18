@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["get_max_row_with_value_sheet","read_sheet_by_name","read_sheet_by_num","write_sheet_by_name"]};
+window.SIDEBAR_ITEMS = {"fn":["get_max_row_with_value_sheet","get_worksheet_names","read_sheet_by_name","read_sheet_by_num","write_sheet_by_name"]};
