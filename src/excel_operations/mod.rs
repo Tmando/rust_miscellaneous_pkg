@@ -31,6 +31,13 @@ pub mod excel_operations {
         if spreadsheet.get_sheet_by_name_mut(&sheet_name).is_ok() {
             spreadsheet.remove_sheet_by_name(&sheet_name).unwrap();
         }
+        if sheet_name != "Sheet1" && spreadsheet.get_sheet_by_name_mut("Sheet1").is_ok(){
+            let sheet1 = spreadsheet.get_sheet_by_name_mut("Sheet1").unwrap();
+            let cell_collection = sheet1.get_cell_collection();
+            if cell_collection.len() == 0 {
+                spreadsheet.remove_sheet_by_name("Sheet1").unwrap();
+            }
+        }
         spreadsheet.add_sheet(worksheet).unwrap();
 
         match umya_spreadsheet::writer::xlsx::write(&spreadsheet, &file_path) {
@@ -146,6 +153,16 @@ pub mod excel_operations {
             }
         }
         return input_vec;
+    }
+    pub fn get_worksheet_names(file_path: impl AsRef<Path>)->Vec<String>{
+        let spread_sheet = open_excel_file_for_read(file_path);
+        let sheet_collection = spread_sheet.get_sheet_collection();
+        let mut sheet_names:Vec<String> = Vec::new();
+        for i in sheet_collection{
+            let name = String::from(i.get_sheet_id());
+            sheet_names.push(name);
+        }
+        return sheet_names;
     }
 
     ///
@@ -330,7 +347,6 @@ pub mod excel_operations {
 #[cfg(feature = "excel_operations")]
 #[cfg(test)]
 mod test {
-
     #[test]
     fn test_fun_write_excel() {
         let test_arr = r#"[
