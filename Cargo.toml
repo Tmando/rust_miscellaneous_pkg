@@ -1,6 +1,6 @@
 [package]
 name = "rust_miscellaneous_pkg"
-version = "0.9.0"
+version = "0.9.1"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -53,6 +53,6 @@ image_resizer = ["dep:image"]
 machine_learning = ["dep:smartcore"]
 matrix_operations = ["dep:nalgebra"]
 random_numbers = ["dep:rand"]
-regex_operations = []
+regex_operations = ["dep:regex"]
 sql_operation = ["dep:futures","dep:serde_json","dep:sqlx","dep:rust_decimal","dep:uuid","dep:bit-vec","dep:rust_decimal"]
 xml_to_json_convert = ["dep:quickxml_to_serde","dep:serde_json"]
