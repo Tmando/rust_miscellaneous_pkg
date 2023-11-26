@@ -2,6 +2,8 @@
 #[cfg(feature = "faker")]
 pub mod faker {
     use std::{ collections::HashMap, convert::TryInto };
+    use fakeit::datetime;
+    use fakeit::datetime::DateTime;
 
     use serde_json::Value;
 
@@ -91,7 +93,6 @@ pub mod faker {
                     "timezone_offset" => Value::String(fakeit::datetime::timezone_offset()),
                     "week_day" => Value::String(fakeit::datetime::week_day()),
                     "year" => Value::String(fakeit::datetime::year()),
-                    "date" => Value::String(fakeit::datetime::date().to_string()),
                     "extension" => Value::String(fakeit::file::extension()),
                     "mime_type" => Value::String(fakeit::file::mime_type()),
                     "abbreviation" => Value::String(fakeit::hacker::abbreviation()),
@@ -732,7 +733,6 @@ fn test_fake_json() {
         {"field_name":"timezone_offset","field_type":"timezone_offset"},
         {"field_name":"week_day","field_type":"week_day"},
         {"field_name":"year","field_type":"year"},
-        {"field_name":"date","field_type":"date"},
         {"field_name":"extension","field_type":"extension"},
         {"field_name":"mime_type","field_type":"mime_type"},
         {"field_name":"abbreviation","field_type":"abbreviation"},
